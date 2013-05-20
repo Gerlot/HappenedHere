@@ -15,6 +15,12 @@ namespace HappanedHere.Views
         public MainPage()
         {
             InitializeComponent();
+            Loaded += PhoneApplicationPage_Loaded;
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            SystemTray.IsVisible = false;
         }
     }
 }

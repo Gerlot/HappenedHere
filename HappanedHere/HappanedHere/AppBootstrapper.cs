@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Caliburn.Micro;
+using Caliburn.Micro.BindableAppBar;
+using System.Windows.Controls;
+using Microsoft.Phone.Controls;
 
 namespace HappanedHere
 {
@@ -27,7 +30,12 @@ namespace HappanedHere
 
         static void AddCustomConventions()
         {
-            //ellided  
+            ConventionManager.AddElementConvention<HubTile>(
+                Control.IsEnabledProperty, "DataContext", "Tap");
+            ConventionManager.AddElementConvention<BindableAppBarButton>(
+                Control.IsEnabledProperty, "DataContext", "Click");
+            ConventionManager.AddElementConvention<BindableAppBarMenuItem>(
+                Control.IsEnabledProperty, "DataContext", "Click");
         }
 
         protected override object GetInstance(Type service, string key)
@@ -44,5 +52,5 @@ namespace HappanedHere
         {
             container.BuildUp(instance);
         }
-    }  
+    }
 }
