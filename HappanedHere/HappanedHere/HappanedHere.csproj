@@ -113,6 +113,11 @@
     <Content Include="ApplicationIcon2.png" />
     <Content Include="Assets\ArPage\AppBar\map.png" />
     <Content Include="Assets\ArPage\AppBar\heading.png" />
+    <Content Include="Assets\MainPage\all.png" />
+    <Content Include="Assets\MainPage\earlier.png" />
+    <Content Include="Assets\MainPage\history.png" />
+    <Content Include="Assets\MainPage\news.png" />
+    <Content Include="Assets\MainPage\sports.png" />
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -120,11 +125,6 @@
     <Content Include="IconicTileMedium2.png" />
     <Content Include="Assets\ApplicationIcon2.png" />
     <Content Include="Assets\MainPage\AppBar\search.png" />
-    <Content Include="Assets\MainPage\sports.png" />
-    <Content Include="Assets\MainPage\earlier.png" />
-    <Content Include="Assets\MainPage\news.png" />
-    <Content Include="Assets\MainPage\history.png" />
-    <Content Include="Assets\MainPage\all.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup />
