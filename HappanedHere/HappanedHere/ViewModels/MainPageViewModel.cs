@@ -14,13 +14,19 @@ namespace HappanedHere.ViewModels
 
         public MainPageViewModel(INavigationService navigationService)
         {
+            searchText = "Search";
+            searchIcon = new Uri("/Assets/MainPage/AppBar/search.png", UriKind.Relative);
+            settingsText = "Settings";
+            rateText = "Rate+review";
+            aboutText = "About";
             this.navigationService = navigationService;
         }
 
         // Tiles
         public void All()
         {
-            MessageBox.Show("All");
+            navigationService.UriFor<ArPageViewModel>()
+                .Navigate();
         }
 
         public void News()
@@ -44,14 +50,79 @@ namespace HappanedHere.ViewModels
         }
 
         // AppBar
+        private string searchText;
+
+        public string SearchText
+        {
+            get { return searchText; }
+            set
+            {
+                searchText = value;
+                NotifyOfPropertyChange(() => SearchText);
+            }
+        }
+
+        private Uri searchIcon;
+
+        public Uri SearchIcon
+        {
+            get { return searchIcon; }
+            set
+            {
+                searchIcon = value;
+                NotifyOfPropertyChange(() => SearchIcon);
+            }
+        }
+
+        public void Search()
+        {
+            MessageBox.Show("Search");
+        }
+
+        private string settingsText;
+
+        public string SettingsText 
+        {
+            get { return settingsText; }
+            set
+            {
+                settingsText = value;
+                NotifyOfPropertyChange(() => SettingsText);
+            }
+        }
+
         public void Settings()
         {
             MessageBox.Show("Settings");
         }
 
+        private string rateText;
+
+        public string RateText
+        {
+            get { return rateText; }
+            set
+            {
+                rateText = value;
+                NotifyOfPropertyChange(() => RateText);
+            }
+        }
+
         public void Rate()
         {
             MessageBox.Show("Rate");
+        }
+
+        private string aboutText;
+
+        public string AboutText
+        {
+            get { return aboutText; }
+            set
+            {
+                aboutText = value;
+                NotifyOfPropertyChange(() => AboutText);
+            }
         }
 
         public void About()

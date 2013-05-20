@@ -22,7 +22,7 @@ namespace HappanedHere
                 container.RegisterPhoneServices();
 
             container.PerRequest<MainPageViewModel>();
-            //container.PerRequest<PivotPageViewModel>();
+            container.PerRequest<ArPageViewModel>();
             //container.PerRequest<TabViewModel>();
 
             AddCustomConventions();

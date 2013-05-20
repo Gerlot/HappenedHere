@@ -1,0 +1,48 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="HappanedHere.Views.ArPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:bar="clr-namespace:Caliburn.Micro.BindableAppBar;assembly=Caliburn.Micro.BindableAppBar"
+    xmlns:loc="clr-namespace:HappanedHere"
+    xmlns:ARControls="clr-namespace:GART.Controls;assembly=GART"
+    xmlns:maps="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="False">
+
+    <phone:PhoneApplicationPage.Resources>
+        <loc:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <!-- Used for authentication against Bing maps -->
+        <maps:ApplicationIdCredentialsProvider x:Key="BingCredentials" ApplicationId="ArhnZbFi8ylybzP-Lyr1BHYU-Essmaqv_INJ6NfLH2nwuQv2yq-O89kH3ik3Aei4" />
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <ARControls:ARDisplay x:Name="ARDisplay" d:LayoutOverrides="Width">
+            <ARControls:VideoPreview x:Name="VideoPreview" />
+            <ARControls:OverheadMap x:Name="OverheadMap" CredentialsProvider="{StaticResource BingCredentials}" />
+            <ARControls:WorldView x:Name="WorldView" />
+            <ARControls:HeadingIndicator x:Name="HeadingIndicator" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsHeadingIndicatorVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </ARControls:ARDisplay>
+        <bar:BindableAppBar x:Name="AppBar" Mode="Default">
+            <bar:BindableAppBarButton 
+                x:Name="ShowHeading"
+                Click="ShowHeading_Click"
+                Text="{Binding ShowHeadingText}"
+                IconUri="{Binding ShowHeadingIcon}" />
+            <bar:BindableAppBarButton 
+                x:Name="ShowMap"
+                Click="ShowMap_Click"
+                Text="{Binding ShowMapText}"
+                IconUri="{Binding ShowMapIcon}" />
+        </bar:BindableAppBar>
+    </Grid>
+
+</phone:PhoneApplicationPage>
