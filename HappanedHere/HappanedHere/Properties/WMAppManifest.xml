@@ -24,7 +24,7 @@
     <Tokens>
       <PrimaryToken TokenID="HappanedHereToken" TaskName="_default">
         <TemplateType5>
-          <BackgroundImageURI IsRelative="true" IsResource="false">IconicTileMedium2.png</BackgroundImageURI>
+          <BackgroundImageURI IsRelative="true" IsResource="false">IconicTileMedium.png</BackgroundImageURI>
           <Count>0</Count>
           <Title>HappanedHere</Title>
         </TemplateType5>

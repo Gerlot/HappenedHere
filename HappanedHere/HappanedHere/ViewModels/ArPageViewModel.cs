@@ -18,10 +18,13 @@ namespace HappanedHere.ViewModels
         public ArPageViewModel(INavigationService navigationService)
         {
             isHeadingIndicatorVisible = false;
+            isMapVisible = false;
+            isWorldViewVisible = true;
             showHeadingText = "Show Heading";
             showHeadingIcon = new Uri("/Assets/ArPage/AppBar/heading.png", UriKind.Relative);
             showMapText = "Show Map";
             showMapIcon = new Uri("/Assets/ArPage/AppBar/map.png", UriKind.Relative);
+            addLocationsText = "Add example locations";
             this.navigationService = navigationService;
         }
 
@@ -34,6 +37,30 @@ namespace HappanedHere.ViewModels
             {
                 isHeadingIndicatorVisible = value;
                 NotifyOfPropertyChange(() => IsHeadingIndicatorVisible);
+            }
+        }
+
+        private bool isMapVisible;
+
+        public bool IsMapVisible
+        {
+            get { return isMapVisible; }
+            set
+            {
+                isMapVisible = value;
+                NotifyOfPropertyChange(() => IsMapVisible);
+            }
+        }
+
+        private bool isWorldViewVisible;
+
+        public bool IsWorldViewIndicatorVisible
+        {
+            get { return isWorldViewVisible; }
+            set
+            {
+                isWorldViewVisible = value;
+                NotifyOfPropertyChange(() => IsWorldViewIndicatorVisible);
             }
         }
 
@@ -83,6 +110,18 @@ namespace HappanedHere.ViewModels
             {
                 showMapIcon = value;
                 NotifyOfPropertyChange(() => ShowMapIcon);
+            }
+        }
+
+        private string addLocationsText;
+
+        public string AddLocationsText
+        {
+            get { return addLocationsText; }
+            set
+            {
+                addLocationsText = value;
+                NotifyOfPropertyChange(() => AddLocationsText);
             }
         }
     }

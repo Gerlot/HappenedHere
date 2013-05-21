@@ -18,7 +18,6 @@ namespace HappanedHere.ViewModels
             searchIcon = new Uri("/Assets/MainPage/AppBar/search.png", UriKind.Relative);
             settingsText = "Settings";
             rateText = "Rate+review";
-            aboutText = "About";
             this.navigationService = navigationService;
         }
 
@@ -111,23 +110,6 @@ namespace HappanedHere.ViewModels
         public void Rate()
         {
             MessageBox.Show("Rate");
-        }
-
-        private string aboutText;
-
-        public string AboutText
-        {
-            get { return aboutText; }
-            set
-            {
-                aboutText = value;
-                NotifyOfPropertyChange(() => AboutText);
-            }
-        }
-
-        public void About()
-        {
-            MessageBox.Show("About");
         }
 
         /*public void GotoPageTwo()

@@ -13,23 +13,21 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Landscape"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="False">
 
     <phone:PhoneApplicationPage.Resources>
-        <loc:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <!-- Used for authentication against Bing maps -->
-        <maps:ApplicationIdCredentialsProvider x:Key="BingCredentials" ApplicationId="ArhnZbFi8ylybzP-Lyr1BHYU-Essmaqv_INJ6NfLH2nwuQv2yq-O89kH3ik3Aei4" />
+        
     </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <ARControls:ARDisplay x:Name="ARDisplay" d:LayoutOverrides="Width">
             <ARControls:VideoPreview x:Name="VideoPreview" />
-            <ARControls:OverheadMap x:Name="OverheadMap" CredentialsProvider="{StaticResource BingCredentials}" />
-            <ARControls:WorldView x:Name="WorldView" />
-            <ARControls:HeadingIndicator x:Name="HeadingIndicator" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsHeadingIndicatorVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <ARControls:OverheadMap x:Name="OverheadMap" RotationSource="AttitudeHeading" Credentials="{StaticResource BingCredentials}" Visibility="{Binding IsMapVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <ARControls:WorldView x:Name="WorldView" Visibility="{Binding IsWorldViewVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <ARControls:HeadingIndicator x:Name="HeadingIndicator" RotationSource="North" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsHeadingIndicatorVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </ARControls:ARDisplay>
         <bar:BindableAppBar x:Name="AppBar" Mode="Default">
             <bar:BindableAppBarButton 
@@ -42,6 +40,11 @@
                 Click="ShowMap_Click"
                 Text="{Binding ShowMapText}"
                 IconUri="{Binding ShowMapIcon}" />
+
+            <bar:BindableAppBarMenuItem
+                x:Name="AddLocations"
+                Click="AddLocations_Click"
+                Text="{Binding AddLocationsText}" />
         </bar:BindableAppBar>
     </Grid>
 
