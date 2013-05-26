@@ -23,7 +23,7 @@ namespace HappanedHere
 
             container.PerRequest<MainPageViewModel>();
             container.PerRequest<ArPageViewModel>();
-            //container.PerRequest<TabViewModel>();
+            container.PerRequest<SettingsPageViewModel>();
 
             AddCustomConventions();
         }

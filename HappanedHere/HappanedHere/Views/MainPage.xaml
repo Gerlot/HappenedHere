@@ -12,7 +12,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Landscape" Orientation="Landscape"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
     <phone:PhoneApplicationPage.Resources>
         <Style x:Key="HubTileStyle0" TargetType="toolkit:HubTile">
@@ -182,8 +182,8 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="35.183,17,0,0" Orientation="Horizontal" Grid.Column="1">
-            <Image x:Name="logo" Source="/Assets/ApplicationIcon2.png" VerticalAlignment="Center" />
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="10,20,0,0" Orientation="Horizontal" Grid.Column="1">
+            <Image x:Name="logo" Source="/Assets/ApplicationIcon2.png" VerticalAlignment="Center" Margin="11,0,0,0"/>
             <TextBlock x:Name="ApplicationTitle" Text="HAPPENED HERE" Style="{StaticResource PhoneTextNormalStyle}" VerticalAlignment="Center"/>
         </StackPanel>
 
@@ -191,7 +191,7 @@
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Grid.ColumnSpan="2">
             <!-- set its ItemContainerStyle which is the style for each ListBoxItem -->
-            <ListBox ItemContainerStyle="{StaticResource TileListBoxItemStyle}" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="30,0,0,0">
+            <ListBox ItemContainerStyle="{StaticResource TileListBoxItemStyle}" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="10,0,0,0">
                 <!-- set its ItemsPanel to be a WrapPanel -->
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>

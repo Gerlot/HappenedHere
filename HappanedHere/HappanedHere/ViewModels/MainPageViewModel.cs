@@ -80,7 +80,7 @@ namespace HappanedHere.ViewModels
 
         private string settingsText;
 
-        public string SettingsText 
+        public string SettingsText
         {
             get { return settingsText; }
             set
@@ -92,7 +92,8 @@ namespace HappanedHere.ViewModels
 
         public void Settings()
         {
-            MessageBox.Show("Settings");
+            navigationService.UriFor<SettingsPageViewModel>()
+                .Navigate();
         }
 
         private string rateText;

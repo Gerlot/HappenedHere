@@ -13,6 +13,7 @@ using GART.Controls;
 using GART.BaseControls; 
 using GART.Data;
 using System.Windows.Media;
+using HappanedHere.Data;
 
 namespace HappanedHere.Views
 {
@@ -50,10 +51,20 @@ namespace HappanedHere.Views
                 // Create a new location based on the users location plus
                 // a random offset.
                 GeoCoordinate offset = new GeoCoordinate(
-                    current.Latitude + ((double)rand.Next(-60, 60)) / 100000,
-                    current.Longitude + ((double)rand.Next(-60, 60)) / 100000);
+                    current.Latitude + ((double)rand.Next(-70, 70)) / 100000,
+                    current.Longitude + ((double)rand.Next(-70, 70)) / 100000,
+                    0);
 
-                AddLabel(offset, "Location " + i);
+                ArticleItem item = new ArticleItem()
+                {
+                    GeoLocation = offset,
+                    Title = "Article " + i,
+                    Lead = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+                    Icon = new Uri("/Assets/MainPage/AppBar/search.png", UriKind.Relative),
+                };
+
+                AddLabel(offset, "Article " + i);
+                ARDisplay.ARItems.Add(item);
             }
         }
 
@@ -81,13 +92,13 @@ namespace HappanedHere.Views
         private void ShowMap_Click(object sender, EventArgs e)
         {
             UIHelper.ToggleVisibility(OverheadMap);
+            UIHelper.ToggleVisibility(WorldView);
             bool mapOn = OverheadMap.Visibility == Visibility.Visible && HeadingIndicator.Visibility != Visibility.Visible;
             bool mapOff = OverheadMap.Visibility != Visibility.Visible && HeadingIndicator.Visibility == Visibility.Visible;
-            // Toggle heading indicator and world view with map
+            // Toggle heading indicator if neccesary with map
             if (mapOn || mapOff)
             {
                 UIHelper.ToggleVisibility(HeadingIndicator);
-                UIHelper.ToggleVisibility(WorldView);
             }
         }
 

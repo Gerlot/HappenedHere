@@ -1,33 +1,62 @@
-﻿<phone:PhoneApplicationPage 
-    x:Class="HappanedHere.Views.SettingsPage"
+﻿<phone:PhoneApplicationPage
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:datastore="clr-namespace:HappanedHere.DataStore"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    x:Class="HappanedHere.Views.SettingsPage"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape"  Orientation="Landscape"
     shell:SystemTray.IsVisible="True">
 
+    <phone:PhoneApplicationPage.Resources>
+        <datastore:AppSettings x:Key="AppSettings"/>
+    </phone:PhoneApplicationPage.Resources>
+
+    <phone:PhoneApplicationPage.FontFamily>
+        <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
+    </phone:PhoneApplicationPage.FontFamily>
+    <phone:PhoneApplicationPage.FontSize>
+        <StaticResource ResourceKey="PhoneFontSizeNormal"/>
+    </phone:PhoneApplicationPage.FontSize>
+    <phone:PhoneApplicationPage.Foreground>
+        <StaticResource ResourceKey="PhoneForegroundBrush"/>
+    </phone:PhoneApplicationPage.Foreground>
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
         <controls:Pivot Title="HAPPENED HERE">
-            <!--Pivot item one-->
             <controls:PivotItem Header="settings">
-                <Grid/>
+                <Grid>
+                    <toolkit:ToggleSwitch x:Name="UseLocation"
+                                          Header="{Binding UseLocationHeaderText}"
+                                          Margin="0,0,0,208"
+                                          IsChecked="{Binding Source={StaticResource AppSettings}, Path=UseLocationSetting, Mode=TwoWay}"/>
+                </Grid>
             </controls:PivotItem>
 
             <!--Pivot item two-->
             <controls:PivotItem Header="about">
-                <Grid/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="AppName" Grid.Row="0" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="HappenedHere" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="AppVersionLabel" Grid.Row="1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Version: " VerticalAlignment="Top"/>
+                    <TextBlock x:Name="AppVersion" Grid.Row="1" HorizontalAlignment="Left" Margin="90,10,0,0" TextWrapping="Wrap" Text="v1.0" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="AppDescription" Grid.Row="2" Margin="10,20,10,0" TextWrapping="Wrap" Text="An augmented reallity-based article reader for Windows Phone 7 and 8. Searches for news, historycal events, and more, happened near your current location, and shows them on the camera's picture live." VerticalAlignment="Top"/>
+                    <TextBlock x:Name="ContactLabel" Grid.Row="3" HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" Text="Contact the developer: " Height="27" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="Contact" Grid.Row="3" HorizontalAlignment="Left" Margin="216,20,0,0" TextWrapping="Wrap" Text="gbalazs6@gmail.com" VerticalAlignment="Top"/>
+                </Grid>
             </controls:PivotItem>
         </controls:Pivot>
     </Grid>
-    
+
 </phone:PhoneApplicationPage>

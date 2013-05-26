@@ -10,6 +10,12 @@ namespace HappanedHere.DataStore
     {
         IsolatedStorageSettings settings;
 
+        // Key names of settings
+        const string UseLocationSettingKeyName = "UseLocationSetting";
+
+        // Default values of settings
+        const bool UseLocationSettingDefault = true;
+
         public AppSettings()
         {
             // Get the settings for this application.
@@ -60,6 +66,19 @@ namespace HappanedHere.DataStore
         public void Save()
         {
             settings.Save();
+        }
+
+        // Properties for settings
+        public bool UseLocationSetting
+        {
+            get { return GetValueOrDefault<bool>(UseLocationSettingKeyName, UseLocationSettingDefault); }
+            set
+            {
+                if (AddOrUpdateValue(UseLocationSettingKeyName, value))
+                {
+                    Save();
+                }
+            }
         }
     }
 }
