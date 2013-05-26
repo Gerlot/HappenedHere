@@ -121,6 +121,9 @@
     <Content Include="ApplicationIcon2.png" />
     <Content Include="Assets\ArPage\AppBar\map.png" />
     <Content Include="Assets\ArPage\AppBar\heading.png" />
+    <Content Include="Assets\ArPage\history_icon.png" />
+    <Content Include="Assets\ArPage\news_icon.png" />
+    <Content Include="Assets\ArPage\sports_icon.png" />
     <Content Include="Assets\MainPage\all.png" />
     <Content Include="Assets\MainPage\earlier.png" />
     <Content Include="Assets\MainPage\history.png" />

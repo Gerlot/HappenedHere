@@ -60,7 +60,7 @@ namespace HappanedHere.Views
                     GeoLocation = offset,
                     Title = "Article " + i,
                     Lead = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
-                    Icon = new Uri("/Assets/MainPage/AppBar/search.png", UriKind.Relative),
+                    Icon = new Uri("/Assets/ArPage/news_icon.png", UriKind.Relative),
                 };
 
                 AddLabel(offset, "Article " + i);

@@ -14,6 +14,29 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
+
+    <!--Transitions-->
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
     <phone:PhoneApplicationPage.Resources>
         <Style x:Key="HubTileStyle0" TargetType="toolkit:HubTile">
             <Setter Property="Height" Value="173"/>
@@ -182,7 +205,7 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="10,20,0,0" Orientation="Horizontal" Grid.Column="1">
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="10,20,0,0" Orientation="Horizontal" Grid.Column="1" >
             <Image x:Name="logo" Source="/Assets/ApplicationIcon2.png" VerticalAlignment="Center" Margin="11,0,0,0"/>
             <TextBlock x:Name="ApplicationTitle" Text="HAPPENED HERE" Style="{StaticResource PhoneTextNormalStyle}" VerticalAlignment="Center"/>
         </StackPanel>
