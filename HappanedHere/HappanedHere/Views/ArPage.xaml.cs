@@ -6,7 +6,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Device.Location;
+using System.Device;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Controls.Maps;
+using Microsoft.Phone.Controls.Maps.PlatformServices;
 using Microsoft.Phone.Shell;
 using GART;
 using GART.Controls;
@@ -14,16 +17,81 @@ using GART.BaseControls;
 using GART.Data;
 using System.Windows.Media;
 using HappanedHere.Data;
+using HappanedHere.GeocodeService;
+using HappanedHere.Helpers;
 
 namespace HappanedHere.Views
 {
     public partial class ArPage : PhoneApplicationPage
     {
         private Random rand = new Random();
+        private GeoCoordinate oldPosition;
+        private GeoCoordinate currentPosition;
+        private GeoCoordinateWatcher geowatcher;
+        private int nearbynumber = 5;
+        private double locationChangedTreshold = 100;
 
         public ArPage()
         {
             InitializeComponent();
+        }
+
+        private void geowatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            if (currentPosition != null)
+            {
+                oldPosition = currentPosition;
+                currentPosition = e.Position.Location;
+                if (oldPosition.GetDistanceTo(currentPosition) > locationChangedTreshold)
+                {
+                    //refreshArticles();
+                }
+            }
+            else
+            {
+                currentPosition = e.Position.Location;
+                //refreshArticles();
+            }                        
+        }
+
+        private void refreshArticles()
+        {
+            for (int i = 0; i < nearbynumber; i++)
+            {
+                // Create a new location based on the users location plus
+                // a random offset.
+                GeoCoordinate nearbyPosition = new GeoCoordinate(
+
+                    currentPosition.Latitude + ((double)rand.Next(-300, 300)) / 100000,
+                    currentPosition.Longitude + ((double)rand.Next(-300, 300)) / 100000,
+                    0);
+
+                // Reverse GeoCoding
+                ReverseGeocodeRequest reverseGeocodeRequest = new ReverseGeocodeRequest();
+                reverseGeocodeRequest.Credentials = new Credentials();
+                string AppId = App.Current.Resources["BingApplicationId"] as string;
+                reverseGeocodeRequest.Credentials.ApplicationId = AppId;
+                reverseGeocodeRequest.Location = nearbyPosition;
+
+                GeocodeServiceClient geocodeClient = new GeocodeServiceClient("BasicHttpBinding_IGeocodeService");
+                geocodeClient.ReverseGeocodeCompleted += geocodeClient_ReverseGeocodeCompleted;
+                geocodeClient.ReverseGeocodeAsync(reverseGeocodeRequest);
+            }
+        }
+
+        private void geocodeClient_ReverseGeocodeCompleted(object sender, ReverseGeocodeCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                if (e.Result.Results.First().Address.AddressLine != "")
+                {
+                    BingSearch.searchNewsByAddress(e.Result.Results.First().Address.AddressLine);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error getting adresses!");
+            }
         }
 
         private void AddLabel(GeoCoordinate location, string label)
@@ -58,12 +126,12 @@ namespace HappanedHere.Views
                 ArticleItem item = new ArticleItem()
                 {
                     GeoLocation = offset,
-                    Title = "Article " + i,
-                    Lead = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+                    Content = "Article " + i,
+                    URL = "http://www.index.hu/something",
                     Icon = new Uri("/Assets/ArPage/news_icon.png", UriKind.Relative),
                 };
 
-                AddLabel(offset, "Article " + i);
+                //AddLabel(offset, "Article " + i);
                 ARDisplay.ARItems.Add(item);
             }
         }
@@ -72,7 +140,10 @@ namespace HappanedHere.Views
         {
             // Stop AR services
             ARDisplay.StopServices();
-
+            if (geowatcher != null)
+            {
+                geowatcher.Stop();
+            }
             base.OnNavigatedFrom(e);
         }
 
@@ -86,7 +157,8 @@ namespace HappanedHere.Views
 
         private void ShowHeading_Click(object sender, EventArgs e)
         {
-            UIHelper.ToggleVisibility(HeadingIndicator);
+            //UIHelper.ToggleVisibility(HeadingIndicator);
+            OverheadMap.Map.Center = currentPosition;
         }
 
         private void ShowMap_Click(object sender, EventArgs e)
@@ -111,6 +183,13 @@ namespace HappanedHere.Views
         private void AddLocations_Click(object sender, EventArgs e)
         {
             AddNearbyLabels();
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            geowatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
+            geowatcher.Start();
+            geowatcher.PositionChanged += geowatcher_PositionChanged;
         }
     }
 }

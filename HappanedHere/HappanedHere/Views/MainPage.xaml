@@ -207,7 +207,7 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="10,20,0,0" Orientation="Horizontal" Grid.Column="1" >
             <Image x:Name="logo" Source="/Assets/ApplicationIcon2.png" VerticalAlignment="Center" Margin="11,0,0,0"/>
-            <TextBlock x:Name="ApplicationTitle" Text="HAPPENED HERE" Style="{StaticResource PhoneTextNormalStyle}" VerticalAlignment="Center"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Path=AppResources.Title, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -221,11 +221,26 @@
                         <toolkit:WrapPanel />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
-                <toolkit:HubTile x:Name="All" Style="{StaticResource HubTileStyle0}" Title="All" Background="Gray" Source="/Assets/MainPage/all.png" Message="Displays articles from all the other categories." />
-                <toolkit:HubTile x:Name="News" Style="{StaticResource HubTileStyle0}" Title="News" Source="/Assets/MainPage/news.png" Message="Displays news where they happened." />
-                <toolkit:HubTile x:Name="History" Style="{StaticResource HubTileStyle0}" Title="History" Source="/Assets/MainPage/history.png" Message="Displays historical events in their location." />
-                <toolkit:HubTile x:Name="Sports" Style="{StaticResource HubTileStyle0}" Title="Sports" Source="/Assets/MainPage/sports.png" Message="News from the world of sports, depending on your location." />
-                <toolkit:HubTile x:Name="Earlier" Style="{StaticResource HubTileStyle0}" Title="Earlier" Source="/Assets/MainPage/earlier.png" Message="Articles You saved for future reading." />
+                <toolkit:HubTile x:Name="All" Style="{StaticResource HubTileStyle0}" 
+                                 Title="All" Background="Gray" Source="/Assets/MainPage/all.png" 
+                                 Message="Displays articles from all the other categories."
+                                 toolkit:TiltEffect.IsTiltEnabled="True"/>
+                <toolkit:HubTile x:Name="News" Style="{StaticResource HubTileStyle0}" 
+                                 Title="News" Source="/Assets/MainPage/news.png" 
+                                 Message="Displays news where they happened." 
+                                 toolkit:TiltEffect.IsTiltEnabled="True"/>
+                <toolkit:HubTile x:Name="History" Style="{StaticResource HubTileStyle0}" 
+                                 Title="History" Source="/Assets/MainPage/history.png" 
+                                 Message="Displays historical events in their location." 
+                                 toolkit:TiltEffect.IsTiltEnabled="True"/>
+                <toolkit:HubTile x:Name="Sports" Style="{StaticResource HubTileStyle0}" 
+                                 Title="Sports" Source="/Assets/MainPage/sports.png" 
+                                 Message="News from the world of sports, depending on your location." 
+                                 toolkit:TiltEffect.IsTiltEnabled="True"/>
+                <toolkit:HubTile x:Name="Earlier" Style="{StaticResource HubTileStyle0}" 
+                                 Title="Earlier" Source="/Assets/MainPage/earlier.png" 
+                                 Message="Articles You saved for future reading." 
+                                 toolkit:TiltEffect.IsTiltEnabled="True"/>
             </ListBox>
         </Grid>
         <bar:BindableAppBar x:Name="AppBar" Mode="Default" Grid.ColumnSpan="2">
