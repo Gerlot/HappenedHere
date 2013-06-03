@@ -117,8 +117,91 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>névjegy</value>
+    <comment>About title for about</comment>
+  </data>
+  <data name="AllTileDescription" xml:space="preserve">
+    <value>Cikkek az összes kategóriából</value>
+    <comment>All tile secription on MainPage</comment>
+  </data>
+  <data name="AllTileTitle" xml:space="preserve">
+    <value>Mind</value>
+    <comment>All tile title on MainPage</comment>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Kiterjesztett valóság alapú cikkolvasó Windows Phone 7-es és 8-as telefonokra. Híreket, történelmi eseményeket,érdekességeket, valamint sporteseményeket keres, amelyek a közeledben történtek, és elhelyezi őket a kamera élő képén.</value>
+    <comment>App description for about</comment>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>HappenedHere</value>
+    <comment>App title for about</comment>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Kapcsolat a fejlesztővel: </value>
+    <comment>Contact label for about</comment>
+  </data>
+  <data name="EarlierTileDesciption" xml:space="preserve">
+    <value>Későbbi olvasásra elmentett hírek</value>
+    <comment>Earlier tile secription on MainPage</comment>
+  </data>
+  <data name="EarlierTileTitle" xml:space="preserve">
+    <value>Korábbról</value>
+    <comment>Earlier tile title on MainPage</comment>
+  </data>
+  <data name="HistoryTileDescription" xml:space="preserve">
+    <value>Történelem, ott ahol megtörtént</value>
+    <comment>History tile secription on MainPage</comment>
+  </data>
+  <data name="HistoryTileTitle" xml:space="preserve">
+    <value>Történelem</value>
+    <comment>History tile title on MainPage</comment>
+  </data>
+  <data name="NewsTileDesciption" xml:space="preserve">
+    <value>Hírek, történésük helyén</value>
+    <comment>News tile secription on MainPage</comment>
+  </data>
+  <data name="NewsTileTitle" xml:space="preserve">
+    <value>Hírek</value>
+    <comment>News tile title on MainPage</comment>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Értékelés+véleményezés</value>
+    <comment>Rate button for AppBar on MainPage</comment>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Keresés</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>beállítások</value>
+    <comment>Settings button for AppBar on MainPage</comment>
+  </data>
+  <data name="ShowMap" xml:space="preserve">
+    <value>Térkép mutatása</value>
+    <comment>Show map button for AppBar on ArPage</comment>
+  </data>
+  <data name="SportsTileDesciption" xml:space="preserve">
+    <value>Sportesemények, amik a közelben történtek</value>
+    <comment>Sports tile secription on MainPage</comment>
+  </data>
+  <data name="SportsTileTitle" xml:space="preserve">
+    <value>Sport</value>
+    <comment>Sports tile title on MainPage</comment>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>ITT TÖRTÉNT</value>
     <comment>The title of the application, appearing in the MainPage.</comment>
+  </data>
+  <data name="ToggleHeading" xml:space="preserve">
+    <value>Nézőpont mutatása</value>
+    <comment>Toggle heading button for AppBar on ArPage</comment>
+  </data>
+  <data name="UseLocation" xml:space="preserve">
+    <value>Helymeghatározás használata</value>
+    <comment>Use locatation label for settings</comment>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Verzió: </value>
+    <comment>Version for about</comment>
   </data>
 </root>

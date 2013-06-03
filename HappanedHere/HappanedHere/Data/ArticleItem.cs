@@ -8,8 +8,19 @@ namespace HappanedHere.Data
 {
     public class ArticleItem : ARItem
     {
+        private string title;
         private string url;
         private Uri icon;
+
+        public string Title
+        {
+            get { return title; }
+            set
+            {
+                title = value;
+                NotifyPropertyChanged(() => Title);
+            }
+        }
 
         public string URL
         {

@@ -117,8 +117,92 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>about</value>
+    <comment>About title for about</comment>
+  </data>
+  <data name="AllTileDescription" xml:space="preserve">
+    <value>Displays articles from all the other categories</value>
+    <comment>All tile secription on MainPage</comment>
+  </data>
+  <data name="AllTileTitle" xml:space="preserve">
+    <value>All</value>
+    <comment>All tile title on MainPage</comment>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>An augmented reallity-based article reader for Windows Phone 7 and 8. Searches for news, historycal events, and more, happened near your current location, and shows them on the camera's picture live.</value>
+    <comment>App description for about</comment>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Happened Here</value>
+    <comment>App title for about</comment>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact the developer: </value>
+    <comment>Contact label for about</comment>
+  </data>
+  <data name="EarlierTileDesciption" xml:space="preserve">
+    <value>Articles You saved for future reading</value>
+    <comment>Earlier tile secription on MainPage</comment>
+  </data>
+  <data name="EarlierTileTitle" xml:space="preserve">
+    <value>Earlier</value>
+    <comment>Earlier tile title on MainPage</comment>
+  </data>
+  <data name="HistoryTileDescription" xml:space="preserve">
+    <value>History, where it happened</value>
+    <comment>History tile secription on MainPage</comment>
+  </data>
+  <data name="HistoryTileTitle" xml:space="preserve">
+    <value>History</value>
+    <comment>History tile title on MainPage</comment>
+  </data>
+  <data name="NewsTileDesciption" xml:space="preserve">
+    <value>Recent news, where they happened</value>
+    <comment>News tile secription on MainPage</comment>
+  </data>
+  <data name="NewsTileTitle" xml:space="preserve">
+    <value>News</value>
+    <comment>News tile title on MainPage</comment>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Rate+review</value>
+    <comment>Rate button for AppBar on MainPage</comment>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+    <comment>Search button for AppBar on MainPage</comment>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>settings</value>
+    <comment>Settings button for AppBar on MainPage</comment>
+  </data>
+  <data name="ShowMap" xml:space="preserve">
+    <value>Show Map</value>
+    <comment>Show map button for AppBar on ArPage</comment>
+  </data>
+  <data name="SportsTileDesciption" xml:space="preserve">
+    <value>Nearby news from the world of sports</value>
+    <comment>Sports tile secription on MainPage</comment>
+  </data>
+  <data name="SportsTileTitle" xml:space="preserve">
+    <value>Sports</value>
+    <comment>Sports tile title on MainPage</comment>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>HAPPENED HERE</value>
     <comment>The title of the application, appearing in the MainPage.</comment>
+  </data>
+  <data name="ToggleHeading" xml:space="preserve">
+    <value>Toggle heading</value>
+    <comment>Toggle heading button for AppBar on ArPage</comment>
+  </data>
+  <data name="UseLocation" xml:space="preserve">
+    <value>Use Location</value>
+    <comment>Use locatation label for settings</comment>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version: </value>
+    <comment>Version for about</comment>
   </data>
 </root>

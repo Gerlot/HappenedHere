@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Caliburn.Micro;
 using System.Windows;
+using HappanedHere.Resources;
 
 namespace HappanedHere.ViewModels
 {
@@ -14,10 +15,10 @@ namespace HappanedHere.ViewModels
 
         public MainPageViewModel(INavigationService navigationService)
         {
-            searchText = "Search";
+            searchText = AppResources.Search;
             searchIcon = new Uri("/Assets/MainPage/AppBar/search.png", UriKind.Relative);
-            settingsText = "Settings";
-            rateText = "Rate+review";
+            settingsText = AppResources.Settings;
+            rateText = AppResources.Rate;
             this.navigationService = navigationService;
         }
 

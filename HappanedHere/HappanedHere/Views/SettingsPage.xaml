@@ -29,8 +29,8 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <controls:Pivot Title="HAPPENED HERE">
-            <controls:PivotItem Header="settings">
+        <controls:Pivot Title="{Binding Path=AppResources.Title, Source={StaticResource LocalizedStrings}}">
+            <controls:PivotItem Header="{Binding Path=AppResources.Settings, Source={StaticResource LocalizedStrings}}">
                 <Grid>
                     <toolkit:ToggleSwitch x:Name="UseLocation"
                                           Header="{Binding UseLocationHeaderText}"
@@ -40,7 +40,7 @@
             </controls:PivotItem>
 
             <!--Pivot item two-->
-            <controls:PivotItem Header="about">
+            <controls:PivotItem Header="{Binding Path=AppResources.About, Source={StaticResource LocalizedStrings}}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -48,12 +48,29 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <TextBlock x:Name="AppName" Grid.Row="0" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="HappenedHere" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="AppVersionLabel" Grid.Row="1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Version: " VerticalAlignment="Top"/>
-                    <TextBlock x:Name="AppVersion" Grid.Row="1" HorizontalAlignment="Left" Margin="90,10,0,0" TextWrapping="Wrap" Text="v1.0" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="AppDescription" Grid.Row="2" Margin="10,20,10,0" TextWrapping="Wrap" Text="An augmented reallity-based article reader for Windows Phone 7 and 8. Searches for news, historycal events, and more, happened near your current location, and shows them on the camera's picture live." VerticalAlignment="Top"/>
-                    <TextBlock x:Name="ContactLabel" Grid.Row="3" HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" Text="Contact the developer: " Height="27" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="Contact" Grid.Row="3" HorizontalAlignment="Left" Margin="216,20,0,0" TextWrapping="Wrap" Text="gbalazs6@gmail.com" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="AppName" Grid.Row="0" HorizontalAlignment="Left" 
+                               Margin="10,0,0,0" TextWrapping="Wrap" 
+                               Text="{Binding Path=AppResources.AppTitle, Source={StaticResource LocalizedStrings}}" 
+                               VerticalAlignment="Top"/>
+                    <TextBlock x:Name="AppVersionLabel" Grid.Row="1" HorizontalAlignment="Left" 
+                               Margin="10,10,0,0" TextWrapping="Wrap" 
+                               Text="{Binding Path=AppResources.Version, Source={StaticResource LocalizedStrings}}" 
+                               VerticalAlignment="Top"/>
+                    <TextBlock x:Name="AppVersion" Grid.Row="1" HorizontalAlignment="Left" 
+                               Margin="90,10,0,0" TextWrapping="Wrap" 
+                               Text="v1.0" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="AppDescription" Grid.Row="2" 
+                               Margin="10,20,10,0" TextWrapping="Wrap" 
+                               Text="{Binding Path=AppResources.AppDescription, Source={StaticResource LocalizedStrings}}" 
+                               VerticalAlignment="Top"/>
+                    <TextBlock x:Name="ContactLabel" Grid.Row="3" HorizontalAlignment="Left" 
+                               Margin="10,20,0,0" TextWrapping="Wrap" 
+                               Text="{Binding Path=AppResources.Contact, Source={StaticResource LocalizedStrings}}" 
+                               VerticalAlignment="Top"/>
+                    <TextBlock x:Name="Contact" Grid.Row="3" HorizontalAlignment="Left" 
+                               Margin="221,20,0,0" TextWrapping="Wrap" 
+                               Text="gbalazs6@gmail.com" 
+                               VerticalAlignment="Top"/>
                 </Grid>
             </controls:PivotItem>
         </controls:Pivot>

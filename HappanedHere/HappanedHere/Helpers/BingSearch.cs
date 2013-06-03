@@ -44,7 +44,7 @@ namespace HappanedHere.Helpers
                     resultList.Add(result.Title);
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
-                        MessageBox.Show(i + ": " + result.Title + ", " + result.Url);
+                        // MessageBox.Show(i + ": " + result.Title + ", " + result.Url);
                     });
                     i++;
                 }

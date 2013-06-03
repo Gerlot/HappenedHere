@@ -19,6 +19,8 @@ using System.Windows.Media;
 using HappanedHere.Data;
 using HappanedHere.GeocodeService;
 using HappanedHere.Helpers;
+using Microsoft.Phone.Applications.Common;
+using Microsoft.Devices.Sensors;
 
 namespace HappanedHere.Views
 {
@@ -28,12 +30,29 @@ namespace HappanedHere.Views
         private GeoCoordinate oldPosition;
         private GeoCoordinate currentPosition;
         private GeoCoordinateWatcher geowatcher;
-        private int nearbynumber = 5;
+        private int nearbynumber = 1;
         private double locationChangedTreshold = 100;
+
+        private Accelerometer accelerometer;
 
         public ArPage()
         {
             InitializeComponent();
+        }
+
+        private void orientationHelper_OrientationChanged(object sender, DeviceOrientationChangedEventArgs e)
+        {
+            if (e.CurrentOrientation.Equals(DeviceOrientation.ScreenSideUp))
+            {
+                MessageBox.Show("Flat");
+            }
+            //e.CurrentOrientation
+            //DeviceOrientation.ScreenSideUp
+        }
+
+        private void accelerometerHelper_ReadingChanged(object sender, AccelerometerHelperReadingEventArgs e)
+        {
+            
         }
 
         private void geowatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
@@ -66,6 +85,8 @@ namespace HappanedHere.Views
                     currentPosition.Longitude + ((double)rand.Next(-300, 300)) / 100000,
                     0);
 
+                MessageBox.Show("request: " + nearbyPosition.Latitude + ", " + nearbyPosition.Longitude);
+
                 // Reverse GeoCoding
                 ReverseGeocodeRequest reverseGeocodeRequest = new ReverseGeocodeRequest();
                 reverseGeocodeRequest.Credentials = new Credentials();
@@ -85,7 +106,16 @@ namespace HappanedHere.Views
             {
                 if (e.Result.Results.First().Address.AddressLine != "")
                 {
-                    BingSearch.searchNewsByAddress(e.Result.Results.First().Address.AddressLine);
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        foreach (var item in e.Result.Results.First().Locations)
+                        {
+                            MessageBox.Show("result: " + item.Latitude + ", " + item.Longitude);
+                        }
+                        
+                    });
+
+                    //BingSearch.searchNewsByAddress(e.Result.Results.First().Address.AddressLine);
                 }
             }
             else
@@ -126,6 +156,7 @@ namespace HappanedHere.Views
                 ArticleItem item = new ArticleItem()
                 {
                     GeoLocation = offset,
+                    Title = "Index.hu - A new article item from index",
                     Content = "Article " + i,
                     URL = "http://www.index.hu/something",
                     Icon = new Uri("/Assets/ArPage/news_icon.png", UriKind.Relative),
@@ -144,6 +175,10 @@ namespace HappanedHere.Views
             {
                 geowatcher.Stop();
             }
+            /*if (accelerometer != null)
+            {
+                accelerometer.Stop();
+            }*/
             base.OnNavigatedFrom(e);
         }
 
@@ -152,13 +187,28 @@ namespace HappanedHere.Views
             // Start AR services
             ARDisplay.StartServices();
 
+            //accelerometer = new Accelerometer();
+            //accelerometer.CurrentValueChanged += accelerometer_CurrentValueChanged;
+            //accelerometer.Start();
+            AccelerometerHelper.Instance.ReadingChanged += new EventHandler<AccelerometerHelperReadingEventArgs>(accelerometerHelper_ReadingChanged);
+            DeviceOrientationHelper.Instance.OrientationChanged += new EventHandler<DeviceOrientationChangedEventArgs>(orientationHelper_OrientationChanged);
+
             base.OnNavigatedTo(e);
         }
 
-        private void ShowHeading_Click(object sender, EventArgs e)
+        private void ToggleHeading_Click(object sender, EventArgs e)
         {
             //UIHelper.ToggleVisibility(HeadingIndicator);
-            OverheadMap.Map.Center = currentPosition;
+            if (OverheadMap.RotationSource == RotationSource.North)
+            {
+                OverheadMap.RotationSource = RotationSource.AttitudeHeading;
+                HeadingIndicator.RotationSource = RotationSource.North;
+            }
+            else
+            {
+                OverheadMap.RotationSource = RotationSource.North;
+                HeadingIndicator.RotationSource = RotationSource.AttitudeHeading;
+            }
         }
 
         private void ShowMap_Click(object sender, EventArgs e)

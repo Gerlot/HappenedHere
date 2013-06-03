@@ -61,11 +61,200 @@ namespace HappanedHere.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to about.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Displays articles from all the other categories.
+        /// </summary>
+        public static string AllTileDescription {
+            get {
+                return ResourceManager.GetString("AllTileDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string AllTileTitle {
+            get {
+                return ResourceManager.GetString("AllTileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An augmented reallity-based article reader for Windows Phone 7 and 8. Searches for news, historycal events, and more, happened near your current location, and shows them on the camera&apos;s picture live..
+        /// </summary>
+        public static string AppDescription {
+            get {
+                return ResourceManager.GetString("AppDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Happened Here.
+        /// </summary>
+        public static string AppTitle {
+            get {
+                return ResourceManager.GetString("AppTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact the developer: .
+        /// </summary>
+        public static string Contact {
+            get {
+                return ResourceManager.GetString("Contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Articles You saved for future reading.
+        /// </summary>
+        public static string EarlierTileDesciption {
+            get {
+                return ResourceManager.GetString("EarlierTileDesciption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Earlier.
+        /// </summary>
+        public static string EarlierTileTitle {
+            get {
+                return ResourceManager.GetString("EarlierTileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to History, where it happened.
+        /// </summary>
+        public static string HistoryTileDescription {
+            get {
+                return ResourceManager.GetString("HistoryTileDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        public static string HistoryTileTitle {
+            get {
+                return ResourceManager.GetString("HistoryTileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recent news, where they happened.
+        /// </summary>
+        public static string NewsTileDesciption {
+            get {
+                return ResourceManager.GetString("NewsTileDesciption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to News.
+        /// </summary>
+        public static string NewsTileTitle {
+            get {
+                return ResourceManager.GetString("NewsTileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate+review.
+        /// </summary>
+        public static string Rate {
+            get {
+                return ResourceManager.GetString("Rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Map.
+        /// </summary>
+        public static string ShowMap {
+            get {
+                return ResourceManager.GetString("ShowMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nearby news from the world of sports.
+        /// </summary>
+        public static string SportsTileDesciption {
+            get {
+                return ResourceManager.GetString("SportsTileDesciption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sports.
+        /// </summary>
+        public static string SportsTileTitle {
+            get {
+                return ResourceManager.GetString("SportsTileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HAPPENED HERE.
         /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle heading.
+        /// </summary>
+        public static string ToggleHeading {
+            get {
+                return ResourceManager.GetString("ToggleHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Location.
+        /// </summary>
+        public static string UseLocation {
+            get {
+                return ResourceManager.GetString("UseLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version: .
+        /// </summary>
+        public static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
     }

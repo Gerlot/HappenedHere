@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using HappanedHere.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,8 @@ namespace HappanedHere.ViewModels
 
         public SettingsPageViewModel(INavigationService navigationService)
         {
-            useLocationHeaderText = "Use location";
-            appNameText = "HappenedHere";
+            useLocationHeaderText = AppResources.UseLocation;
+            appNameText = AppResources.Title;
             this.navigationService = navigationService;
         }
 

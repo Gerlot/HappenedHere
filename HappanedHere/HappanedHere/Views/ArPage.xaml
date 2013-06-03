@@ -32,7 +32,7 @@
                         <RowDefinition Height="0.33*"/>
                     </Grid.RowDefinitions>
                     <Image Grid.RowSpan="3" Source="{Binding Icon}" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10,10,10"/>
-                    <TextBlock x:Name="NameBlock" TextWrapping="NoWrap" Text="{Binding Content}" FontSize="32" VerticalAlignment="Center" Margin="0,0,4,0" d:LayoutOverrides="Width" Grid.Column="1" TextTrimming="WordEllipsis"/>
+                    <TextBlock x:Name="NameBlock" TextWrapping="NoWrap" Text="{Binding Title}" FontSize="32" VerticalAlignment="Center" Margin="0,0,4,0" d:LayoutOverrides="Width" Grid.Column="1" TextTrimming="WordEllipsis"/>
                     <TextBlock x:Name="TypeBlock" TextWrapping="NoWrap" Text="{Binding URL}" FontSize="20" VerticalAlignment="Center" Margin="0,0,4,0" Grid.Column="1" d:LayoutOverrides="Width" Grid.Row="1" TextTrimming="WordEllipsis"/>
                 </Grid>
             </Border>
@@ -53,10 +53,10 @@
         </ARControls:ARDisplay>
         <bar:BindableAppBar x:Name="AppBar" Mode="Default">
             <bar:BindableAppBarButton 
-                x:Name="ShowHeading"
-                Click="ShowHeading_Click"
-                Text="{Binding ShowHeadingText}"
-                IconUri="{Binding ShowHeadingIcon}" />
+                x:Name="ToggleHeading"
+                Click="ToggleHeading_Click"
+                Text="{Binding ToggleHeadingText}"
+                IconUri="{Binding ToggleHeadingIcon}" />
             <bar:BindableAppBarButton 
                 x:Name="ShowMap"
                 Click="ShowMap_Click"

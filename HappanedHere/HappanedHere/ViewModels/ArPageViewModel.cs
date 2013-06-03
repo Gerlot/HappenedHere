@@ -7,6 +7,7 @@ using System.Windows;
 using GART.Controls;
 using GART;
 using HappanedHere.Views;
+using HappanedHere.Resources;
 
 namespace HappanedHere.ViewModels
 {
@@ -20,9 +21,9 @@ namespace HappanedHere.ViewModels
             isHeadingIndicatorVisible = false;
             isMapVisible = false;
             isWorldViewVisible = true;
-            showHeadingText = "Show Heading";
-            showHeadingIcon = new Uri("/Assets/ArPage/AppBar/heading.png", UriKind.Relative);
-            showMapText = "Show Map";
+            toggleHeadingText = AppResources.ToggleHeading;
+            toggleHeadingIcon = new Uri("/Assets/ArPage/AppBar/heading.png", UriKind.Relative);
+            showMapText = AppResources.ShowMap;
             showMapIcon = new Uri("/Assets/ArPage/AppBar/map.png", UriKind.Relative);
             addLocationsText = "Add example locations";
             this.navigationService = navigationService;
@@ -65,27 +66,27 @@ namespace HappanedHere.ViewModels
         }
 
         // AppBar
-        private string showHeadingText;
+        private string toggleHeadingText;
 
-        public string ShowHeadingText
+        public string ToggleHeadingText
         {
-            get { return showHeadingText; }
+            get { return toggleHeadingText; }
             set
             {
-                showHeadingText = value;
-                NotifyOfPropertyChange(() => ShowHeadingText);
+                toggleHeadingText = value;
+                NotifyOfPropertyChange(() => ToggleHeadingText);
             }
         }
 
-        private Uri showHeadingIcon;
+        private Uri toggleHeadingIcon;
 
-        public Uri ShowHeadingIcon
+        public Uri ToggleHeadingIcon
         {
-            get { return showHeadingIcon; }
+            get { return toggleHeadingIcon; }
             set
             {
-                showHeadingIcon = value;
-                NotifyOfPropertyChange(() => ShowHeadingIcon);
+                toggleHeadingIcon = value;
+                NotifyOfPropertyChange(() => ToggleHeadingIcon);
             }
         }
 
