@@ -121,6 +121,10 @@
     <value>about</value>
     <comment>About title for about</comment>
   </data>
+  <data name="AllPivotItemTitle" xml:space="preserve">
+    <value>all articles</value>
+    <comment>Title for EarlierPage All articles pivot item</comment>
+  </data>
   <data name="AllTileDescription" xml:space="preserve">
     <value>Displays articles from all the other categories</value>
     <comment>All tile secription on MainPage</comment>
@@ -149,6 +153,10 @@
     <value>Earlier</value>
     <comment>Earlier tile title on MainPage</comment>
   </data>
+  <data name="HistoryPivotItemTitle" xml:space="preserve">
+    <value>history</value>
+    <comment>Title for EarlierPage History pivot item</comment>
+  </data>
   <data name="HistoryTileDescription" xml:space="preserve">
     <value>History, where it happened</value>
     <comment>History tile secription on MainPage</comment>
@@ -157,6 +165,18 @@
     <value>History</value>
     <comment>History tile title on MainPage</comment>
   </data>
+  <data name="LetFindLocationDescription" xml:space="preserve">
+    <value>HappenedHere needs your current location, to show the nearby articles. Please allow the program to use your current location.</value>
+    <comment>Description for messagebox when use of location services turned off.</comment>
+  </data>
+  <data name="LetFindLocationTitle" xml:space="preserve">
+    <value>Let HappenedHere use of your current position?</value>
+    <comment>Title for messagebox when use of location services turned off.</comment>
+  </data>
+  <data name="NewsPivotItemTitle" xml:space="preserve">
+    <value>news</value>
+    <comment>Title for EarlierPage News pivot item</comment>
+  </data>
   <data name="NewsTileDesciption" xml:space="preserve">
     <value>Recent news, where they happened</value>
     <comment>News tile secription on MainPage</comment>
@@ -164,6 +184,12 @@
   <data name="NewsTileTitle" xml:space="preserve">
     <value>News</value>
     <comment>News tile title on MainPage</comment>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>On</value>
   </data>
   <data name="Rate" xml:space="preserve">
     <value>Rate+review</value>
@@ -180,6 +206,10 @@
   <data name="ShowMap" xml:space="preserve">
     <value>Show Map</value>
     <comment>Show map button for AppBar on ArPage</comment>
+  </data>
+  <data name="SportsPivotItemTitle" xml:space="preserve">
+    <value>sports</value>
+    <comment>Title for EarlierPage Sports pivot item</comment>
   </data>
   <data name="SportsTileDesciption" xml:space="preserve">
     <value>Nearby news from the world of sports</value>

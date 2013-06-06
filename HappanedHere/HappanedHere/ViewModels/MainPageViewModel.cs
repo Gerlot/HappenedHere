@@ -5,6 +5,7 @@ using System.Text;
 using Caliburn.Micro;
 using System.Windows;
 using HappanedHere.Resources;
+using HappanedHere.DataStore;
 
 namespace HappanedHere.ViewModels
 {
@@ -12,44 +13,68 @@ namespace HappanedHere.ViewModels
     public class MainPageViewModel : Screen
     {
         readonly INavigationService navigationService;
+        private AppSettings settings;
 
         public MainPageViewModel(INavigationService navigationService)
         {
+            this.navigationService = navigationService;
+            settings = new AppSettings();
             searchText = AppResources.Search;
             searchIcon = new Uri("/Assets/MainPage/AppBar/search.png", UriKind.Relative);
             settingsText = AppResources.Settings;
             rateText = AppResources.Rate;
-            this.navigationService = navigationService;
         }
 
-        // Tiles
+        # region Tiles
         public void All()
         {
-            navigationService.UriFor<ArPageViewModel>()
-                .Navigate();
+            GoToArView();
         }
 
         public void News()
         {
-            MessageBox.Show("News");
+            GoToArView();
         }
 
         public void History()
         {
-            MessageBox.Show("History");
+            GoToArView();
         }
 
         public void Sports()
         {
-            MessageBox.Show("Sports");
+            GoToArView();   
         }
 
         public void Earlier()
         {
-            MessageBox.Show("Earlier");
+            navigationService.UriFor<EarlierPageViewModel>().Navigate();
         }
 
-        // AppBar
+        # endregion
+
+        # region Methods
+
+        private void GoToArView()
+        {
+            if (settings.UseLocationSetting)
+            {
+                navigationService.UriFor<ArPageViewModel>().Navigate();
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show(AppResources.LetFindLocationDescription,
+                    AppResources.LetFindLocationTitle, MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
+                    settings.UseLocationSetting = true;
+                    navigationService.UriFor<ArPageViewModel>().Navigate();
+                }
+            }
+        }
+        # endregion
+
+        # region AppBar Properties
         private string searchText;
 
         public string SearchText
@@ -74,11 +99,6 @@ namespace HappanedHere.ViewModels
             }
         }
 
-        public void Search()
-        {
-            MessageBox.Show("Search");
-        }
-
         private string settingsText;
 
         public string SettingsText
@@ -89,12 +109,6 @@ namespace HappanedHere.ViewModels
                 settingsText = value;
                 NotifyOfPropertyChange(() => SettingsText);
             }
-        }
-
-        public void Settings()
-        {
-            navigationService.UriFor<SettingsPageViewModel>()
-                .Navigate();
         }
 
         private string rateText;
@@ -109,10 +123,27 @@ namespace HappanedHere.ViewModels
             }
         }
 
+        # endregion
+
+        # region AppBar Methods
+
+        public void Search()
+        {
+            MessageBox.Show("Search");
+        }
+
+        public void Settings()
+        {
+            navigationService.UriFor<SettingsPageViewModel>()
+                .Navigate();
+        }
+
         public void Rate()
         {
             MessageBox.Show("Rate");
         }
+
+        # endregion
 
         /*public void GotoPageTwo()
         {

@@ -8,19 +8,14 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 
-namespace HappanedHere
+namespace HappanedHere.Views
 {
-    using System.Windows;
-    using System.Threading;
-
-    public partial class App : Application
+    public partial class EarlierPage : PhoneApplicationPage
     {
-        public App()
+        public EarlierPage()
         {
             InitializeComponent();
         }

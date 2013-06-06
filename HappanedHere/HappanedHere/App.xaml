@@ -8,6 +8,7 @@
     <Application.Resources>
         <local:AppBootstrapper x:Key="bootstrapper" />
         <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <local:BooleanToSwitchConverter x:Key="BooleanToSwitchConverter" />
         <helpers:LocalizedStrings x:Key="LocalizedStrings" />
         <sys:String x:Key="AzureAccountKey">s5tccMIi8ks902O7y1XJPzFyVOrLHuv2Ub1aU7h9JIE</sys:String>
         <sys:String x:Key="BingApplicationId">ArhnZbFi8ylybzP-Lyr1BHYU-Essmaqv_INJ6NfLH2nwuQv2yq-O89kH3ik3Aei4</sys:String>

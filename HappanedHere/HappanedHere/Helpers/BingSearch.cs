@@ -1,4 +1,6 @@
 ﻿using Bing;
+using HappanedHere.ViewModels;
+using HappanedHere.Views;
 using System;
 using System.Collections.Generic;
 using System.Data.Services.Client;
@@ -12,7 +14,30 @@ namespace HappanedHere.Helpers
 {
     public class BingSearch
     {
-        public static void searchNewsByAddress(string address)
+        private static int resultNumber = 20;
+
+        private ArPageViewModel arPageViewModel;
+
+        public BingSearch(ArPageViewModel arPageViewModel)
+        {
+            this.arPageViewModel = arPageViewModel;
+        }
+
+        public class ArticleSearchResult
+        {
+            public string title;
+            public string displayUrl;
+            public string url;
+
+            public ArticleSearchResult(string title, string displayUrl, string url)
+            {
+                this.title = title;
+                this.displayUrl = displayUrl;
+                this.url = url;
+            }
+        }
+
+        public void searchNewsByAddress(string address)
         {
             string rootUri = "https://api.datamarket.azure.com/Bing/Search";
             var bingContainer = new BingSearchContainer(new Uri(rootUri));
@@ -21,39 +46,52 @@ namespace HappanedHere.Helpers
             bingContainer.UseDefaultCredentials = false;
             bingContainer.Credentials = new NetworkCredential(accountKey, accountKey);
 
-            DateTime now = DateTime.Now;
-            string searchTerm = address + " " + now.Year.ToString() + " (site:origo.hu OR site:index.hu) -site:ingatlanapro.origo.hu -site:forum.index.hu";
-            MessageBox.Show(searchTerm);
+            string searchTerm = address + " (site:hir24.hu OR site:origo.hu OR site:index.hu) -site:ingatlanapro.origo.hu -site:forum.index.hu -site:cimkezes.origo.hu -site:admin.index.hu";
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                MessageBox.Show(searchTerm);
+            });
 
             var newsQuery = bingContainer.Web(searchTerm, null, "DisableQueryAlterations", null, null, null, null, null);
-            newsQuery.BeginExecute(_onNewsQueryComplete, newsQuery);
+            newsQuery.AddQueryOption("$top", 20);
+            var result = newsQuery.BeginExecute(_onNewsQueryComplete, newsQuery);
         }
 
         // Handle the query callback. 
-        private static void _onNewsQueryComplete(IAsyncResult newsResults)
+        private void _onNewsQueryComplete(IAsyncResult newsResults)
         {
             DataServiceQuery<Bing.WebResult> query = newsResults.AsyncState as DataServiceQuery<Bing.WebResult>;
 
-            var resultList = new List<string>();
+            var resultList = new List<ArticleSearchResult>();
 
-            int i = 0;
-            foreach (var result in query.EndExecute(newsResults))
+            foreach (var result in query.EndExecute(newsResults).Take(resultNumber))
             {
-                if (i <= 6)
+                DateTime now = DateTime.Now;
+                if (result.Url.Contains(now.Year.ToString()))
                 {
-                    resultList.Add(result.Title);
-                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    /*Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
-                        // MessageBox.Show(i + ": " + result.Title + ", " + result.Url);
-                    });
-                    i++;
-                }
-                else
+                        MessageBox.Show(result.Url);                        
+                    });*/
+                    resultList.Add(new ArticleSearchResult(result.Title, result.DisplayUrl, result.Url));
+                }               
+            }
+
+            if (resultList.Count != 0)
+            {
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
-                    break;
-                }
+                    arPageViewModel.addArticlesToView(resultList);
+                });
+            }
+            else
+            {
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    //MessageBox.Show("No result");
+                    arPageViewModel.tryNextNearbyLocation();
+                });
             }
         }
-
     }
 }

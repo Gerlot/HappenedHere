@@ -9,6 +9,7 @@ namespace HappanedHere.Data
     public class ArticleItem : ARItem
     {
         private string title;
+        private string displayUrl;
         private string url;
         private Uri icon;
 
@@ -22,13 +23,23 @@ namespace HappanedHere.Data
             }
         }
 
-        public string URL
+        public string DisplayUrl
+        {
+            get { return displayUrl; }
+            set
+            {
+                displayUrl = value;
+                NotifyPropertyChanged(() => DisplayUrl);
+            }
+        }
+
+        public string Url
         {
             get { return url; }
             set
             {
                 url = value;
-                NotifyPropertyChanged(() => URL);
+                NotifyPropertyChanged(() => Url);
             }
         }
 

@@ -21,23 +21,40 @@ using HappanedHere.GeocodeService;
 using HappanedHere.Helpers;
 using Microsoft.Phone.Applications.Common;
 using Microsoft.Devices.Sensors;
+using HappanedHere.ViewModels;
 
 namespace HappanedHere.Views
 {
     public partial class ArPage : PhoneApplicationPage
     {
-        private Random rand = new Random();
-        private GeoCoordinate oldPosition;
-        private GeoCoordinate currentPosition;
-        private GeoCoordinateWatcher geowatcher;
-        private int nearbynumber = 1;
-        private double locationChangedTreshold = 100;
+        public enum ArticleType { News, History, Sports };
+        public static Stack<ArticleToSearch> articles;
 
         private Accelerometer accelerometer;
 
         public ArPage()
         {
             InitializeComponent();
+        }
+
+        ArPageViewModel viewModel
+        {
+            get
+            {
+                return this.DataContext as ArPageViewModel;
+            }
+        }
+
+        public class ArticleToSearch
+        {
+            public GeocodeLocation location;
+            public string address;
+
+            public ArticleToSearch(GeocodeLocation l, string a)
+            {
+                location = l;
+                address = a;
+            }
         }
 
         private void orientationHelper_OrientationChanged(object sender, DeviceOrientationChangedEventArgs e)
@@ -53,128 +70,44 @@ namespace HappanedHere.Views
         private void accelerometerHelper_ReadingChanged(object sender, AccelerometerHelperReadingEventArgs e)
         {
             
-        }
+        }      
+                
 
-        private void geowatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        public void AddArticle(ArticleType type, GeoCoordinate location, string title, Uri url)
         {
-            if (currentPosition != null)
+            Uri icon = null;
+            switch (type)
             {
-                oldPosition = currentPosition;
-                currentPosition = e.Position.Location;
-                if (oldPosition.GetDistanceTo(currentPosition) > locationChangedTreshold)
-                {
-                    //refreshArticles();
-                }
+                case ArticleType.News:
+                    icon = new Uri("/Assets/ArPage/news_icon.png", UriKind.Relative);
+                    break;
+                case ArticleType.History:
+                    icon = new Uri("/Assets/ArPage/history_icon.png", UriKind.Relative);
+                    break;
+                case ArticleType.Sports:
+                    icon = new Uri("/Assets/ArPage/sports_icon.png", UriKind.Relative);
+                    break;
+                default:
+                    break;
             }
-            else
+            ArticleItem item = new ArticleItem()
             {
-                currentPosition = e.Position.Location;
-                //refreshArticles();
-            }                        
-        }
-
-        private void refreshArticles()
-        {
-            for (int i = 0; i < nearbynumber; i++)
-            {
-                // Create a new location based on the users location plus
-                // a random offset.
-                GeoCoordinate nearbyPosition = new GeoCoordinate(
-
-                    currentPosition.Latitude + ((double)rand.Next(-300, 300)) / 100000,
-                    currentPosition.Longitude + ((double)rand.Next(-300, 300)) / 100000,
-                    0);
-
-                MessageBox.Show("request: " + nearbyPosition.Latitude + ", " + nearbyPosition.Longitude);
-
-                // Reverse GeoCoding
-                ReverseGeocodeRequest reverseGeocodeRequest = new ReverseGeocodeRequest();
-                reverseGeocodeRequest.Credentials = new Credentials();
-                string AppId = App.Current.Resources["BingApplicationId"] as string;
-                reverseGeocodeRequest.Credentials.ApplicationId = AppId;
-                reverseGeocodeRequest.Location = nearbyPosition;
-
-                GeocodeServiceClient geocodeClient = new GeocodeServiceClient("BasicHttpBinding_IGeocodeService");
-                geocodeClient.ReverseGeocodeCompleted += geocodeClient_ReverseGeocodeCompleted;
-                geocodeClient.ReverseGeocodeAsync(reverseGeocodeRequest);
-            }
-        }
-
-        private void geocodeClient_ReverseGeocodeCompleted(object sender, ReverseGeocodeCompletedEventArgs e)
-        {
-            if (e.Error == null)
-            {
-                if (e.Result.Results.First().Address.AddressLine != "")
-                {
-                    Deployment.Current.Dispatcher.BeginInvoke(() =>
-                    {
-                        foreach (var item in e.Result.Results.First().Locations)
-                        {
-                            MessageBox.Show("result: " + item.Latitude + ", " + item.Longitude);
-                        }
-                        
-                    });
-
-                    //BingSearch.searchNewsByAddress(e.Result.Results.First().Address.AddressLine);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Error getting adresses!");
-            }
-        }
-
-        private void AddLabel(GeoCoordinate location, string label)
-        {
-            // We'll use the specified text for the content and we'll let 
-            // the system automatically project the item into world space
-            // for us based on the Geo location.
-            ARItem item = new ARItem()
-            {
-                Content = label,
                 GeoLocation = location,
+                Title = title,
+                Content = "Article",
+                DisplayUrl = url.ToString(),
+                Icon = icon,
             };
 
             ARDisplay.ARItems.Add(item);
         }
 
-        private void AddNearbyLabels()
-        {
-            // Start with the current location
-            GeoCoordinate current = ARDisplay.Location;
-
-            // We'll add three Labels
-            for (int i = 0; i < 3; i++)
-            {
-                // Create a new location based on the users location plus
-                // a random offset.
-                GeoCoordinate offset = new GeoCoordinate(
-                    current.Latitude + ((double)rand.Next(-70, 70)) / 100000,
-                    current.Longitude + ((double)rand.Next(-70, 70)) / 100000,
-                    0);
-
-                ArticleItem item = new ArticleItem()
-                {
-                    GeoLocation = offset,
-                    Title = "Index.hu - A new article item from index",
-                    Content = "Article " + i,
-                    URL = "http://www.index.hu/something",
-                    Icon = new Uri("/Assets/ArPage/news_icon.png", UriKind.Relative),
-                };
-
-                //AddLabel(offset, "Article " + i);
-                ARDisplay.ARItems.Add(item);
-            }
-        }
-
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
-            // Stop AR services
+            // Stop AR and other services
             ARDisplay.StopServices();
-            if (geowatcher != null)
-            {
-                geowatcher.Stop();
-            }
+            viewModel.StopServices();
+            
             /*if (accelerometer != null)
             {
                 accelerometer.Stop();
@@ -184,8 +117,9 @@ namespace HappanedHere.Views
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            // Start AR services
+            // Start AR and other services
             ARDisplay.StartServices();
+            viewModel.StartServices();
 
             //accelerometer = new Accelerometer();
             //accelerometer.CurrentValueChanged += accelerometer_CurrentValueChanged;
@@ -196,50 +130,11 @@ namespace HappanedHere.Views
             base.OnNavigatedTo(e);
         }
 
-        private void ToggleHeading_Click(object sender, EventArgs e)
-        {
-            //UIHelper.ToggleVisibility(HeadingIndicator);
-            if (OverheadMap.RotationSource == RotationSource.North)
-            {
-                OverheadMap.RotationSource = RotationSource.AttitudeHeading;
-                HeadingIndicator.RotationSource = RotationSource.North;
-            }
-            else
-            {
-                OverheadMap.RotationSource = RotationSource.North;
-                HeadingIndicator.RotationSource = RotationSource.AttitudeHeading;
-            }
-        }
-
-        private void ShowMap_Click(object sender, EventArgs e)
-        {
-            UIHelper.ToggleVisibility(OverheadMap);
-            UIHelper.ToggleVisibility(WorldView);
-            bool mapOn = OverheadMap.Visibility == Visibility.Visible && HeadingIndicator.Visibility != Visibility.Visible;
-            bool mapOff = OverheadMap.Visibility != Visibility.Visible && HeadingIndicator.Visibility == Visibility.Visible;
-            // Toggle heading indicator if neccesary with map
-            if (mapOn || mapOff)
-            {
-                UIHelper.ToggleVisibility(HeadingIndicator);
-            }
-        }
-
         protected override void OnOrientationChanged(OrientationChangedEventArgs e)
         {
             base.OnOrientationChanged(e);
             ARDisplay.HandleOrientationChange(e);            
         }
 
-        private void AddLocations_Click(object sender, EventArgs e)
-        {
-            AddNearbyLabels();
-        }
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            geowatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
-            geowatcher.Start();
-            geowatcher.PositionChanged += geowatcher_PositionChanged;
-        }
     }
 }

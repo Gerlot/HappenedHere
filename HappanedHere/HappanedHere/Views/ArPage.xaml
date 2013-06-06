@@ -14,14 +14,13 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="PortraitOrLandscape" Orientation="Landscape"
-    Loaded="PhoneApplicationPage_Loaded"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Landscape"    
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="False">
 
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="ArticleItemBig">
-            <Border BorderBrush="White" BorderThickness="1" Background="{StaticResource PhoneAccentBrush}" Width="320">
+            <Border BorderBrush="White" BorderThickness="1" Background="{StaticResource PhoneAccentBrush}" Width="500">
                 <Grid Margin="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -33,7 +32,7 @@
                     </Grid.RowDefinitions>
                     <Image Grid.RowSpan="3" Source="{Binding Icon}" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10,10,10"/>
                     <TextBlock x:Name="NameBlock" TextWrapping="NoWrap" Text="{Binding Title}" FontSize="32" VerticalAlignment="Center" Margin="0,0,4,0" d:LayoutOverrides="Width" Grid.Column="1" TextTrimming="WordEllipsis"/>
-                    <TextBlock x:Name="TypeBlock" TextWrapping="NoWrap" Text="{Binding URL}" FontSize="20" VerticalAlignment="Center" Margin="0,0,4,0" Grid.Column="1" d:LayoutOverrides="Width" Grid.Row="1" TextTrimming="WordEllipsis"/>
+                    <TextBlock x:Name="TypeBlock" TextWrapping="NoWrap" Text="{Binding DisplayUrl}" FontSize="20" VerticalAlignment="Center" Margin="0,0,4,0" Grid.Column="1" d:LayoutOverrides="Width" Grid.Row="1" TextTrimming="WordEllipsis"/>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -42,30 +41,32 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <ARControls:ARDisplay x:Name="ARDisplay" d:LayoutOverrides="Width">
+        <ARControls:ARDisplay x:Name="ARDisplay" d:LayoutOverrides="Width" ARItems="{Binding ArticleItems}">
             <ARControls:VideoPreview x:Name="VideoPreview" />
-            <ARControls:OverheadMap x:Name="OverheadMap" RotationSource="North" Credentials="{StaticResource BingCredentials}" 
+            <ARControls:OverheadMap x:Name="OverheadMap"
+                                    ZoomLevel="0.72"
+                                    RotationSource="{Binding OverheadMapRotationSource}" 
+                                    Credentials="{StaticResource BingCredentials}" 
                                     Visibility="{Binding IsMapVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             <ARControls:WorldView x:Name="WorldView" Visibility="{Binding IsWorldViewVisible, Converter={StaticResource BooleanToVisibilityConverter}}" 
                                   ItemTemplate="{StaticResource ArticleItemBig}"/>
-            <ARControls:HeadingIndicator x:Name="HeadingIndicator" RotationSource="AttitudeHeading" HorizontalAlignment="Center" VerticalAlignment="Center" 
+            <ARControls:HeadingIndicator x:Name="HeadingIndicator" 
+                                         RotationSource="{Binding HeadingIndicatorRotationSource}" 
+                                         HorizontalAlignment="Center" VerticalAlignment="Center" 
                                          Visibility="{Binding IsHeadingIndicatorVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </ARControls:ARDisplay>
         <bar:BindableAppBar x:Name="AppBar" Mode="Default">
             <bar:BindableAppBarButton 
                 x:Name="ToggleHeading"
-                Click="ToggleHeading_Click"
                 Text="{Binding ToggleHeadingText}"
                 IconUri="{Binding ToggleHeadingIcon}" />
             <bar:BindableAppBarButton 
                 x:Name="ShowMap"
-                Click="ShowMap_Click"
                 Text="{Binding ShowMapText}"
                 IconUri="{Binding ShowMapIcon}" />
 
             <bar:BindableAppBarMenuItem
                 x:Name="AddLocations"
-                Click="AddLocations_Click"
                 Text="{Binding AddLocationsText}" />
         </bar:BindableAppBar>
     </Grid>

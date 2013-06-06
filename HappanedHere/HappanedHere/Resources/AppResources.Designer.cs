@@ -70,6 +70,15 @@ namespace HappanedHere.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to all articles.
+        /// </summary>
+        public static string AllPivotItemTitle {
+            get {
+                return ResourceManager.GetString("AllPivotItemTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Displays articles from all the other categories.
         /// </summary>
         public static string AllTileDescription {
@@ -133,6 +142,15 @@ namespace HappanedHere.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to history.
+        /// </summary>
+        public static string HistoryPivotItemTitle {
+            get {
+                return ResourceManager.GetString("HistoryPivotItemTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to History, where it happened.
         /// </summary>
         public static string HistoryTileDescription {
@@ -151,6 +169,33 @@ namespace HappanedHere.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HappenedHere needs your current location, to show the nearby articles. Please allow the program to use your current location..
+        /// </summary>
+        public static string LetFindLocationDescription {
+            get {
+                return ResourceManager.GetString("LetFindLocationDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Let HappenedHere use of your current position?.
+        /// </summary>
+        public static string LetFindLocationTitle {
+            get {
+                return ResourceManager.GetString("LetFindLocationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to news.
+        /// </summary>
+        public static string NewsPivotItemTitle {
+            get {
+                return ResourceManager.GetString("NewsPivotItemTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recent news, where they happened.
         /// </summary>
         public static string NewsTileDesciption {
@@ -165,6 +210,24 @@ namespace HappanedHere.Resources {
         public static string NewsTileTitle {
             get {
                 return ResourceManager.GetString("NewsTileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Off.
+        /// </summary>
+        public static string Off {
+            get {
+                return ResourceManager.GetString("Off", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On.
+        /// </summary>
+        public static string On {
+            get {
+                return ResourceManager.GetString("On", resourceCulture);
             }
         }
         
@@ -201,6 +264,15 @@ namespace HappanedHere.Resources {
         public static string ShowMap {
             get {
                 return ResourceManager.GetString("ShowMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sports.
+        /// </summary>
+        public static string SportsPivotItemTitle {
+            get {
+                return ResourceManager.GetString("SportsPivotItemTitle", resourceCulture);
             }
         }
         

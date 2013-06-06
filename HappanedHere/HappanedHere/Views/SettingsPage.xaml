@@ -35,7 +35,14 @@
                     <toolkit:ToggleSwitch x:Name="UseLocation"
                                           Header="{Binding UseLocationHeaderText}"
                                           Margin="0,0,0,208"
-                                          IsChecked="{Binding Source={StaticResource AppSettings}, Path=UseLocationSetting, Mode=TwoWay}"/>
+                                          IsChecked="{Binding Source={StaticResource AppSettings}, Path=UseLocationSetting, Mode=TwoWay}">
+                        <toolkit:ToggleSwitch.ContentTemplate>
+                            <DataTemplate>
+                                <ContentControl HorizontalAlignment="Left"
+                                                Content="{Binding Converter={StaticResource BooleanToSwitchConverter}}"/>
+                            </DataTemplate>
+                        </toolkit:ToggleSwitch.ContentTemplate>
+                    </toolkit:ToggleSwitch>
                 </Grid>
             </controls:PivotItem>
 

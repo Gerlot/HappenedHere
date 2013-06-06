@@ -121,6 +121,10 @@
     <value>névjegy</value>
     <comment>About title for about</comment>
   </data>
+  <data name="AllPivotItemTitle" xml:space="preserve">
+    <value>minden cikk</value>
+    <comment>Title for EarlierPage All articles pivot item</comment>
+  </data>
   <data name="AllTileDescription" xml:space="preserve">
     <value>Cikkek az összes kategóriából</value>
     <comment>All tile secription on MainPage</comment>
@@ -149,6 +153,10 @@
     <value>Korábbról</value>
     <comment>Earlier tile title on MainPage</comment>
   </data>
+  <data name="HistoryPivotItemTitle" xml:space="preserve">
+    <value>törtnelem</value>
+    <comment>Title for EarlierPage History pivot item</comment>
+  </data>
   <data name="HistoryTileDescription" xml:space="preserve">
     <value>Történelem, ott ahol megtörtént</value>
     <comment>History tile secription on MainPage</comment>
@@ -157,6 +165,18 @@
     <value>Történelem</value>
     <comment>History tile title on MainPage</comment>
   </data>
+  <data name="LetFindLocationDescription" xml:space="preserve">
+    <value>Az Itt Történtnek szüksége van a pillanatnyi pozíciódra, hogy megjelenítse a közeli helyszínekhez kapcsolódó cikkeket. Kérlek engedélyezd a helymeghatározást a program számára.</value>
+    <comment>Description for messagebox when use of location services turned off.</comment>
+  </data>
+  <data name="LetFindLocationTitle" xml:space="preserve">
+    <value>Engedélyezed a pillanatyni pozíciód használatát?</value>
+    <comment>Title for messagebox when use of location services turned off.</comment>
+  </data>
+  <data name="NewsPivotItemTitle" xml:space="preserve">
+    <value>hírek</value>
+    <comment>Title for EarlierPage News pivot item</comment>
+  </data>
   <data name="NewsTileDesciption" xml:space="preserve">
     <value>Hírek, történésük helyén</value>
     <comment>News tile secription on MainPage</comment>
@@ -164,6 +184,12 @@
   <data name="NewsTileTitle" xml:space="preserve">
     <value>Hírek</value>
     <comment>News tile title on MainPage</comment>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Kikapcsolva</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>Bekapcsolva</value>
   </data>
   <data name="Rate" xml:space="preserve">
     <value>Értékelés+véleményezés</value>
@@ -179,6 +205,10 @@
   <data name="ShowMap" xml:space="preserve">
     <value>Térkép mutatása</value>
     <comment>Show map button for AppBar on ArPage</comment>
+  </data>
+  <data name="SportsPivotItemTitle" xml:space="preserve">
+    <value>sport</value>
+    <comment>Title for EarlierPage Sports pivot item</comment>
   </data>
   <data name="SportsTileDesciption" xml:space="preserve">
     <value>Sportesemények, amik a közelben történtek</value>
