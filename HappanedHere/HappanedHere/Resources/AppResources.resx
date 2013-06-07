@@ -185,23 +185,53 @@
     <value>News</value>
     <comment>News tile title on MainPage</comment>
   </data>
+  <data name="NoSavedArticles" xml:space="preserve">
+    <value>It's lonely here. Save some articles you want to read later.</value>
+    <comment>Placeholder text for EarlierPage in case of no saved articles to display</comment>
+  </data>
   <data name="Off" xml:space="preserve">
     <value>Off</value>
+    <comment>Off state indicator for ToggleSwitch</comment>
   </data>
   <data name="On" xml:space="preserve">
     <value>On</value>
+    <comment>On state indicator for ToggleSwitch</comment>
+  </data>
+  <data name="PinToStart" xml:space="preserve">
+    <value>pin to start</value>
+    <comment>Pin to main screen context menu item</comment>
   </data>
   <data name="Rate" xml:space="preserve">
     <value>Rate+review</value>
     <comment>Rate button for AppBar on MainPage</comment>
   </data>
+  <data name="RefreshArticles" xml:space="preserve">
+    <value>refresh articles</value>
+    <comment>Refresh articles button for AppBar on ArPage</comment>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>save article</value>
+    <comment>Save  button for AppBar on ReadArticlePage</comment>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
     <comment>Search button for AppBar on MainPage</comment>
   </data>
+  <data name="SendEmail" xml:space="preserve">
+    <value>send via email</value>
+    <comment>Send via email  button for AppBar on ReadArticlePage</comment>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>settings</value>
     <comment>Settings button for AppBar on MainPage</comment>
+  </data>
+  <data name="ShareViaEmailBody" xml:space="preserve">
+    <value>Hi! I think you would be interested in this article I read: </value>
+    <comment>Body for article sharing via email</comment>
+  </data>
+  <data name="ShareViaEmailSubject" xml:space="preserve">
+    <value>I want to share an article with you from HappenedHere Windows Phone App!</value>
+    <comment>Subject for article sharing via email</comment>
   </data>
   <data name="ShowMap" xml:space="preserve">
     <value>Show Map</value>
@@ -234,5 +264,9 @@
   <data name="Version" xml:space="preserve">
     <value>Version: </value>
     <comment>Version for about</comment>
+  </data>
+  <data name="ViewInExplorer" xml:space="preserve">
+    <value>view in explorer</value>
+    <comment>View in explorer button for AppBar on ReadArticlePage</comment>
   </data>
 </root>

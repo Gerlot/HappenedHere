@@ -20,8 +20,8 @@
 
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="ArticleItemBig">
-            <Border BorderBrush="White" BorderThickness="1" Background="{StaticResource PhoneAccentBrush}" Width="500">
-                <Grid Margin="4">
+            <Border BorderBrush="White" BorderThickness="1" Background="{StaticResource PhoneAccentBrush}" Width="450">
+                <Grid Margin="4" Tap="Grid_Tap">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="0.5*"/>
@@ -49,13 +49,14 @@
                                     Credentials="{StaticResource BingCredentials}" 
                                     Visibility="{Binding IsMapVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             <ARControls:WorldView x:Name="WorldView" Visibility="{Binding IsWorldViewVisible, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                                  ItemTemplate="{StaticResource ArticleItemBig}"/>
+                                  ItemTemplate="{StaticResource ArticleItemBig}"
+                                  />
             <ARControls:HeadingIndicator x:Name="HeadingIndicator" 
                                          RotationSource="{Binding HeadingIndicatorRotationSource}" 
                                          HorizontalAlignment="Center" VerticalAlignment="Center" 
                                          Visibility="{Binding IsHeadingIndicatorVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </ARControls:ARDisplay>
-        <bar:BindableAppBar x:Name="AppBar" Mode="Default">
+        <bar:BindableAppBar x:Name="AppBar" Mode="Default" BarOpacity="0.5">
             <bar:BindableAppBarButton 
                 x:Name="ToggleHeading"
                 Text="{Binding ToggleHeadingText}"
@@ -66,9 +67,14 @@
                 IconUri="{Binding ShowMapIcon}" />
 
             <bar:BindableAppBarMenuItem
-                x:Name="AddLocations"
-                Text="{Binding AddLocationsText}" />
+                x:Name="RefreshArticles"
+                Text="{Binding RefreshArticlesText}" />
         </bar:BindableAppBar>
-    </Grid>
+
+        <toolkit:PerformanceProgressBar
+            x:Name="performanceProgressBar"
+            VerticalAlignment="Top"
+            IsIndeterminate="{Binding IsProgressBarIndeterminate}"/>
+    </Grid>    
 
 </phone:PhoneApplicationPage>

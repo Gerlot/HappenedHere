@@ -185,22 +185,52 @@
     <value>Hírek</value>
     <comment>News tile title on MainPage</comment>
   </data>
+  <data name="NoSavedArticles" xml:space="preserve">
+    <value>Nincs még itt semmi. Ments el olyan cikkeket, amiket később el akarsz olvasni.</value>
+    <comment>Placeholder text for EarlierPage in case of no saved articles to display</comment>
+  </data>
   <data name="Off" xml:space="preserve">
     <value>Kikapcsolva</value>
+    <comment>Off state indicator for ToggleSwitch</comment>
   </data>
   <data name="On" xml:space="preserve">
     <value>Bekapcsolva</value>
+    <comment>On state indicator for ToggleSwitch</comment>
+  </data>
+  <data name="PinToStart" xml:space="preserve">
+    <value>kitűzés a kezdőképernyőre</value>
+    <comment>Pin to main screen context menu item</comment>
   </data>
   <data name="Rate" xml:space="preserve">
     <value>Értékelés+véleményezés</value>
     <comment>Rate button for AppBar on MainPage</comment>
   </data>
+  <data name="RefreshArticles" xml:space="preserve">
+    <value>cikkek újratöltése</value>
+    <comment>Refresh articles button for AppBar on ArPage</comment>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>cikk mentése</value>
+    <comment>Save  button for AppBar on ReadArticlePage</comment>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Keresés</value>
+  </data>
+  <data name="SendEmail" xml:space="preserve">
+    <value>elküldés emailben</value>
+    <comment>Send via email  button for AppBar on ReadArticlePage</comment>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>beállítások</value>
     <comment>Settings button for AppBar on MainPage</comment>
+  </data>
+  <data name="ShareViaEmailBody" xml:space="preserve">
+    <value>Szia! Szerintem érdekelni fog ez a cikk, amit olvastam:</value>
+    <comment>Body for article sharing via email</comment>
+  </data>
+  <data name="ShareViaEmailSubject" xml:space="preserve">
+    <value>Szeretnék megosztani Veled egy cikket, amit az Itt Történt Windows Phone Appban olvastam</value>
+    <comment>Subject for article sharing via email</comment>
   </data>
   <data name="ShowMap" xml:space="preserve">
     <value>Térkép mutatása</value>
@@ -233,5 +263,9 @@
   <data name="Version" xml:space="preserve">
     <value>Verzió: </value>
     <comment>Version for about</comment>
+  </data>
+  <data name="ViewInExplorer" xml:space="preserve">
+    <value>megtekintés explorerben</value>
+    <comment>View in explorer button for AppBar on ReadArticlePage</comment>
   </data>
 </root>

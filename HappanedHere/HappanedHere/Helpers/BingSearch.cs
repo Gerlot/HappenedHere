@@ -47,10 +47,10 @@ namespace HappanedHere.Helpers
             bingContainer.Credentials = new NetworkCredential(accountKey, accountKey);
 
             string searchTerm = address + " (site:hir24.hu OR site:origo.hu OR site:index.hu) -site:ingatlanapro.origo.hu -site:forum.index.hu -site:cimkezes.origo.hu -site:admin.index.hu";
-            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            /*Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
                 MessageBox.Show(searchTerm);
-            });
+            });*/
 
             var newsQuery = bingContainer.Web(searchTerm, null, "DisableQueryAlterations", null, null, null, null, null);
             newsQuery.AddQueryOption("$top", 20);
@@ -60,21 +60,27 @@ namespace HappanedHere.Helpers
         // Handle the query callback. 
         private void _onNewsQueryComplete(IAsyncResult newsResults)
         {
-            DataServiceQuery<Bing.WebResult> query = newsResults.AsyncState as DataServiceQuery<Bing.WebResult>;
-
             var resultList = new List<ArticleSearchResult>();
 
-            foreach (var result in query.EndExecute(newsResults).Take(resultNumber))
+            try
             {
-                DateTime now = DateTime.Now;
-                if (result.Url.Contains(now.Year.ToString()))
+                DataServiceQuery<Bing.WebResult> query = newsResults.AsyncState as DataServiceQuery<Bing.WebResult>;
+                
+                foreach (var result in query.EndExecute(newsResults).Take(resultNumber))
                 {
-                    /*Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    DateTime now = DateTime.Now;
+                    if (result.Url.Contains(now.Year.ToString()))
                     {
-                        MessageBox.Show(result.Url);                        
-                    });*/
-                    resultList.Add(new ArticleSearchResult(result.Title, result.DisplayUrl, result.Url));
-                }               
+                        /*Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            MessageBox.Show(result.Url);                        
+                        });*/
+                        resultList.Add(new ArticleSearchResult(result.Title, result.DisplayUrl, result.Url));
+                    }
+                }
+            }
+            catch (DataServiceQueryException)
+            {
             }
 
             if (resultList.Count != 0)

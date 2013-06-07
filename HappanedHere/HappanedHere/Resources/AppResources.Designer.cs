@@ -214,6 +214,15 @@ namespace HappanedHere.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It&apos;s lonely here. Save some articles you want to read later..
+        /// </summary>
+        public static string NoSavedArticles {
+            get {
+                return ResourceManager.GetString("NoSavedArticles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Off.
         /// </summary>
         public static string Off {
@@ -232,11 +241,38 @@ namespace HappanedHere.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to pin to start.
+        /// </summary>
+        public static string PinToStart {
+            get {
+                return ResourceManager.GetString("PinToStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rate+review.
         /// </summary>
         public static string Rate {
             get {
                 return ResourceManager.GetString("Rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to refresh articles.
+        /// </summary>
+        public static string RefreshArticles {
+            get {
+                return ResourceManager.GetString("RefreshArticles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to save article.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         
@@ -250,11 +286,38 @@ namespace HappanedHere.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to send via email.
+        /// </summary>
+        public static string SendEmail {
+            get {
+                return ResourceManager.GetString("SendEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to settings.
         /// </summary>
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hi! I think you would be interested in this article I read: .
+        /// </summary>
+        public static string ShareViaEmailBody {
+            get {
+                return ResourceManager.GetString("ShareViaEmailBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I want to share an article with you from HappenedHere Windows Phone App!.
+        /// </summary>
+        public static string ShareViaEmailSubject {
+            get {
+                return ResourceManager.GetString("ShareViaEmailSubject", resourceCulture);
             }
         }
         
@@ -327,6 +390,15 @@ namespace HappanedHere.Resources {
         public static string Version {
             get {
                 return ResourceManager.GetString("Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to view in explorer.
+        /// </summary>
+        public static string ViewInExplorer {
+            get {
+                return ResourceManager.GetString("ViewInExplorer", resourceCulture);
             }
         }
     }

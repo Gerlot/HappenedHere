@@ -245,7 +245,13 @@
                                  Title="{Binding Path=AppResources.EarlierTileTitle, Source={StaticResource LocalizedStrings}}" 
                                  Source="/Assets/MainPage/earlier.png" 
                                  Message="{Binding Path=AppResources.EarlierTileDescription, Source={StaticResource LocalizedStrings}}" 
-                                 toolkit:TiltEffect.IsTiltEnabled="True"/>
+                                 toolkit:TiltEffect.IsTiltEnabled="True">
+                    <toolkit:ContextMenuService.ContextMenu>
+                        <toolkit:ContextMenu>
+                            <toolkit:MenuItem Header="{Binding Path=AppResources.PinToStart, Source={StaticResource LocalizedStrings}}" Click="MenuItem_Click"/>
+                        </toolkit:ContextMenu>
+                    </toolkit:ContextMenuService.ContextMenu>
+                </toolkit:HubTile>
             </ListBox>
         </Grid>
         <bar:BindableAppBar x:Name="AppBar" Mode="Default" Grid.ColumnSpan="2">

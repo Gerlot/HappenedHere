@@ -17,6 +17,7 @@ using HappanedHere.Helpers;
 using HappanedHere.GeocodeService;
 using Microsoft.Phone.Controls.Maps;
 using System.Text.RegularExpressions;
+using Microsoft.Phone.Shell;
 
 namespace HappanedHere.ViewModels
 {
@@ -24,6 +25,8 @@ namespace HappanedHere.ViewModels
     public class ArPageViewModel : Screen
     {
         readonly INavigationService navigationService;
+        public static string ArticleUrl;
+        public static string ArticleTitle;
 
         private Random rand = new Random();
         private GeoCoordinate oldPosition;
@@ -32,6 +35,7 @@ namespace HappanedHere.ViewModels
         private int nearbynumber = 10;
         private double locationChangedTreshold = 100;
 
+        private List<string> nearbyStreets;
         private Stack<GeoCoordinate> nearbyCoordinates;
         private GeoCoordinate currentNearby;
         private BingSearch searcher;
@@ -41,11 +45,13 @@ namespace HappanedHere.ViewModels
             this.navigationService = navigationService;
             geowatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
             nearbyCoordinates = new Stack<GeoCoordinate>();
+            nearbyStreets = new List<string>();
             searcher = new BingSearch(this);
 
             isHeadingIndicatorVisible = false;
             isMapVisible = false;
             isWorldViewVisible = true;
+            isProgressBarIndeterminate = true;
             overheadMapRotationSource = RotationSource.North;
             headingIndicatorRotationSource = RotationSource.AttitudeHeading;
 
@@ -53,7 +59,7 @@ namespace HappanedHere.ViewModels
             toggleHeadingIcon = new Uri("/Assets/ArPage/AppBar/heading.png", UriKind.Relative);
             showMapText = AppResources.ShowMap;
             showMapIcon = new Uri("/Assets/ArPage/AppBar/map.png", UriKind.Relative);
-            addLocationsText = "Add example locations";
+            refreshArticlesText = AppResources.RefreshArticles;
             articleItems = new ObservableCollection<ARItem>();            
         }
 
@@ -130,6 +136,18 @@ namespace HappanedHere.ViewModels
             }
         }
 
+        private bool isProgressBarIndeterminate;
+
+        public bool IsProgressBarIndeterminate
+        {
+            get { return isProgressBarIndeterminate; }
+            set
+            {
+                isProgressBarIndeterminate = value;
+                NotifyOfPropertyChange(() => IsProgressBarIndeterminate);
+            }
+        }
+
         # endregion
 
         # region Methods
@@ -148,14 +166,13 @@ namespace HappanedHere.ViewModels
                 currentPosition = e.Position.Location;
                 if (oldPosition.GetDistanceTo(currentPosition) > locationChangedTreshold)
                 {
-                    //ArticleItems.Clear();
-                    //refreshArticles();
+                    //RefreshArticles();
                 }
             }
             else
             {
-                currentPosition = e.Position.Location;
-                refreshArticles();
+                currentPosition = e.Position.Location;                
+                RefreshArticles();
             }
         }
 
@@ -165,6 +182,17 @@ namespace HappanedHere.ViewModels
             {
                 geowatcher.Stop();
             }
+        }
+
+        public void ReadArticle(string url, string title)
+        {
+            //MessageBox.Show(url);
+            if (url != null && url != "")
+            {
+                ArticleUrl = url;
+                ArticleTitle = title;
+                navigationService.UriFor<ReadArticlePageViewModel>().Navigate();
+            }            
         }
 
         public void addArticlesToView(List<HappanedHere.Helpers.BingSearch.ArticleSearchResult> resultList)
@@ -187,7 +215,7 @@ namespace HappanedHere.ViewModels
 
                     currentNearby.Latitude + ((double)rand.Next(-40, 40)) / 100000,
                     currentNearby.Longitude + ((double)rand.Next(-40, 40)) / 100000,
-                    currentNearby.Altitude + ((double)rand.Next(-20, 20)) / 100000);
+                    currentNearby.Altitude + (double)rand.Next(-80, 80));
                     ArticleItem articleItem = new ArticleItem()
                     {
                         GeoLocation = articlePosition,
@@ -210,30 +238,13 @@ namespace HappanedHere.ViewModels
             if (nearbyCoordinates.Count != 0)
             {
                 GeoCoordinate c = nearbyCoordinates.Pop();
-                MessageBox.Show("next request: " + c.Latitude + ", " + c.Longitude);
+                //MessageBox.Show("next request: " + c.Latitude + ", " + c.Longitude);
                 reverseGeocode(c);
             }
-        }
-
-        private void refreshArticles()
-        {
-            for (int i = 0; i < nearbynumber; i++)
+            else
             {
-                // Create a new location based on the users location plus
-                // a random offset.
-                GeoCoordinate nearbyPosition = new GeoCoordinate(
-
-                    currentPosition.Latitude + ((double)rand.Next(-250, 250)) / 100000,
-                    currentPosition.Longitude + ((double)rand.Next(-250, 250)) / 100000,
-                    0);
-
-                //MessageBox.Show("request: " + nearbyPosition.Latitude + ", " + nearbyPosition.Longitude);
-
-                nearbyCoordinates.Push(nearbyPosition);                
+                IsProgressBarIndeterminate = false;
             }
-            GeoCoordinate c = nearbyCoordinates.Pop();
-            MessageBox.Show("refresh request: " + c.Latitude + ", " + c.Longitude);
-            reverseGeocode(c);
         }
 
         private void reverseGeocode(GeoCoordinate location)
@@ -265,12 +276,21 @@ namespace HappanedHere.ViewModels
                             double longitude = e.Result.Results.First().Locations.First().Longitude;
                             currentNearby = new GeoCoordinate(latitude, longitude);
 
-                            // Search for street after removing numbers
+                            // Remove (house) numbers from address
                             string address = item.Address.AddressLine;
-                            address = Regex.Replace(address, @"[\d-]", string.Empty);
-                            searcher.searchNewsByAddress("\"" + address + "\"");
-                            //searcher.searchNewsByAddress(address); 
-                            break;
+                            address = Regex.Replace(address, @"[\d-]", string.Empty).Trim();
+
+                            // Check if address already searched
+                            if (!nearbyStreets.Contains(address))
+                            {
+                                nearbyStreets.Add(address);
+                                searcher.searchNewsByAddress("\"" + address + "\"");
+                                break;
+                            }
+                            else
+                            {
+                                tryNextNearbyLocation();
+                            }
                         }
                     }
                     if (i == 0)
@@ -286,9 +306,9 @@ namespace HappanedHere.ViewModels
             else
             {
                 currentNearby = null;
-                MessageBox.Show("Error getting adresses!");
+                tryNextNearbyLocation();
             }
-        }
+        }       
 
         # endregion
 
@@ -341,15 +361,15 @@ namespace HappanedHere.ViewModels
             }
         }
 
-        private string addLocationsText;
+        private string refreshArticlesText;
 
-        public string AddLocationsText
+        public string RefreshArticlesText
         {
-            get { return addLocationsText; }
+            get { return refreshArticlesText; }
             set
             {
-                addLocationsText = value;
-                NotifyOfPropertyChange(() => AddLocationsText);
+                refreshArticlesText = value;
+                NotifyOfPropertyChange(() => RefreshArticlesText);
             }
         }
         # endregion
@@ -386,7 +406,33 @@ namespace HappanedHere.ViewModels
             }
         }
 
-        public void AddLocations()
+        public void RefreshArticles()
+        {
+            // Clear ArticleItems and stored nearby locations
+            ArticleItems.Clear();
+            nearbyCoordinates.Clear();
+            nearbyStreets.Clear();
+
+            // Show Progress Bar
+            IsProgressBarIndeterminate = true;
+
+            // Pick random nearby locations
+            for (int i = 0; i < nearbynumber; i++)
+            {
+                GeoCoordinate nearbyPosition = new GeoCoordinate(
+
+                    currentPosition.Latitude + ((double)rand.Next(-250, 250)) / 100000,
+                    currentPosition.Longitude + ((double)rand.Next(-250, 250)) / 100000,
+                    0);
+
+                nearbyCoordinates.Push(nearbyPosition);
+            }
+            GeoCoordinate c = nearbyCoordinates.Pop();
+            //MessageBox.Show("refresh request: " + c.Latitude + ", " + c.Longitude);
+            reverseGeocode(c);
+        }
+
+        /*public void AddLocations()
         {
             if (currentPosition != null)
             {
@@ -414,7 +460,7 @@ namespace HappanedHere.ViewModels
                     ArticleItems.Add(articleItem);
                 }
             }   
-        }
+        }*/
 
         # endregion
     }

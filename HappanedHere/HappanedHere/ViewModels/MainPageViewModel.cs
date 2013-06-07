@@ -5,7 +5,9 @@ using System.Text;
 using Caliburn.Micro;
 using System.Windows;
 using HappanedHere.Resources;
-using HappanedHere.DataStore;
+using HappanedHere.Data;
+using Microsoft.Phone.Net.NetworkInformation;
+using Microsoft.Phone.Shell;
 
 namespace HappanedHere.ViewModels
 {
@@ -13,6 +15,7 @@ namespace HappanedHere.ViewModels
     public class MainPageViewModel : Screen
     {
         readonly INavigationService navigationService;
+        private static readonly string EarlierTileUriSource = "Source=EarlierTile";
         private AppSettings settings;
 
         public MainPageViewModel(INavigationService navigationService)
@@ -55,23 +58,78 @@ namespace HappanedHere.ViewModels
 
         # region Methods
 
+        public void PinToStart()
+        {
+            ShellTile tile = this.FindTile(EarlierTileUriSource);
+            if (tile == null)
+            {
+                StandardTileData tileData = new StandardTileData
+                {
+                    Title = "Secondary Tile",
+                    BackgroundImage = new Uri("/Assets/MainPage/earlier.png", UriKind.Relative),
+                    Count = EarlierPageViewModel.savedArticleNumber,
+                    BackTitle = "Secondary Tile",
+                    BackBackgroundImage = new Uri("", UriKind.Relative),
+                    BackContent = "WPG Add Remove Tile Sample"
+                };
+
+                string tileUri = string.Concat("/Views/EarlierPage.xaml?", EarlierTileUriSource);
+                ShellTile.Create(new Uri(tileUri, UriKind.Relative), tileData);
+            }
+        }
+
+        private void UpdateTile()
+        {
+            ShellTile tile = this.FindTile(EarlierTileUriSource);
+            if (tile != null)
+            {
+                StandardTileData tileData = new StandardTileData
+                {
+                    Title = "Secondary Tile",
+                    BackgroundImage = new Uri("/Assets/MainPage/earlier.png", UriKind.Relative),
+                    Count = EarlierPageViewModel.savedArticleNumber,
+                    BackTitle = "Secondary Tile",
+                    BackBackgroundImage = new Uri("", UriKind.Relative),
+                    BackContent = "WPG Add Remove Tile Sample"
+                };
+                tile.Update(tileData);
+            }
+        }
+
         private void GoToArView()
         {
-            if (settings.UseLocationSetting)
+            if (NetworkInterface.GetIsNetworkAvailable())
             {
-                navigationService.UriFor<ArPageViewModel>().Navigate();
+                if (settings.UseLocationSetting)
+                {
+                    navigationService.UriFor<ArPageViewModel>().Navigate();
+                }
+                else
+                {
+                    MessageBoxResult result = MessageBox.Show(AppResources.LetFindLocationDescription,
+                        AppResources.LetFindLocationTitle, MessageBoxButton.OKCancel);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        settings.UseLocationSetting = true;
+                        navigationService.UriFor<ArPageViewModel>().Navigate();
+                    }
+                }
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show(AppResources.LetFindLocationDescription,
-                    AppResources.LetFindLocationTitle, MessageBoxButton.OKCancel);
-                if (result == MessageBoxResult.OK)
-                {
-                    settings.UseLocationSetting = true;
-                    navigationService.UriFor<ArPageViewModel>().Navigate();
-                }
+                MessageBox.Show("The Augmented Reallity View can't work without internet.", "No network connection", MessageBoxButton.OK);
             }
+            
         }
+
+        private ShellTile FindTile(string partOfUri)
+        {
+            ShellTile shellTile = ShellTile.ActiveTiles.FirstOrDefault(
+                tile => tile.NavigationUri.ToString().Contains(partOfUri));
+
+            return shellTile;
+        }
+
         # endregion
 
         # region AppBar Properties

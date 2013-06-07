@@ -11,7 +11,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait"  Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -20,30 +20,56 @@
         <controls:Pivot Title="{Binding Path=AppResources.Title, Source={StaticResource LocalizedStrings}}">
             <!--Pivot item one-->
             <controls:PivotItem Header="{Binding Path=AppResources.AllPivotItemTitle, Source={StaticResource LocalizedStrings}}">
-                <Grid>
-                    
-                </Grid>
+                <ListBox x:Name="Articles" Margin="10,0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding}" FontSize="30" Margin="0,10,0,10" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </controls:PivotItem>
 
             <!--Pivot item two-->
             <controls:PivotItem Header="{Binding Path=AppResources.NewsPivotItemTitle, Source={StaticResource LocalizedStrings}}">
-                <Grid>
-                    
-                </Grid>
+                <ListBox x:Name="NewsArticles" Margin="10,0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding}" FontSize="30" Margin="0,10,0,10" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </controls:PivotItem>
 
             <!--Pivot item three-->
             <controls:PivotItem Header="{Binding Path=AppResources.HistoryPivotItemTitle, Source={StaticResource LocalizedStrings}}">
-                <Grid/>
+                <ListBox x:Name="HistoryArticles" Margin="10,0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding}" FontSize="30" Margin="0,10,0,10" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </controls:PivotItem>
 
             <!--Pivot item four-->
             <controls:PivotItem Header="{Binding Path=AppResources.SportsPivotItemTitle, Source={StaticResource LocalizedStrings}}">
-                <Grid>
-                    
-                </Grid>
+                <ListBox x:Name="SportArticles" Margin="10,0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding}" FontSize="30" Margin="0,10,0,10" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </controls:PivotItem>
         </controls:Pivot>
     </Grid>
-    
+
 </phone:PhoneApplicationPage>

@@ -135,6 +135,7 @@
     <Compile Include="ViewModels\ArPageViewModel.cs" />
     <Compile Include="ViewModels\EarlierPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\ReadArticlePageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="Views\ArPage.xaml.cs">
       <DependentUpon>ArPage.xaml</DependentUpon>
@@ -144,6 +145,9 @@
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReadArticlePage.xaml.cs">
+      <DependentUpon>ReadArticlePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -181,6 +185,9 @@
     <None Include="Service References\GeocodeService\service.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Assets\ReadArticlePage\AppBar\email.png" />
+    <Content Include="Assets\ReadArticlePage\AppBar\explorer.png" />
+    <Content Include="Assets\ReadArticlePage\AppBar\save.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +233,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReadArticlePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

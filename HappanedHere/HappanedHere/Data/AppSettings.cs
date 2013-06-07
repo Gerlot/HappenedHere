@@ -4,7 +4,7 @@ using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Text;
 
-namespace HappanedHere.DataStore
+namespace HappanedHere.Data
 {
     public class AppSettings
     {
@@ -19,7 +19,10 @@ namespace HappanedHere.DataStore
         public AppSettings()
         {
             // Get the settings for this application.
-            settings = IsolatedStorageSettings.ApplicationSettings;
+            if (!System.ComponentModel.DesignerProperties.IsInDesignTool)
+            {
+                settings = IsolatedStorageSettings.ApplicationSettings;
+            }
         }
 
         public bool AddOrUpdateValue(string Key, Object value)

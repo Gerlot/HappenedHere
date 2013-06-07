@@ -1,9 +1,11 @@
 ﻿using Caliburn.Micro;
 using HappanedHere.Resources;
+using Microsoft.Phone.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace HappanedHere.ViewModels
 {
@@ -19,7 +21,8 @@ namespace HappanedHere.ViewModels
             this.navigationService = navigationService;
         }
 
-        // Settings
+        # region Settings Porperties
+
         private string useLocationHeaderText;
 
         public string UseLocationHeaderText
@@ -32,7 +35,10 @@ namespace HappanedHere.ViewModels
             }
         }
 
-        // About
+        # endregion
+
+        # region About Properties
+
         private string appNameText;
 
         public string AppNameText
@@ -44,5 +50,20 @@ namespace HappanedHere.ViewModels
                 NotifyOfPropertyChange(() => AppNameText);
             }
         }
+
+        # endregion
+
+        # region About Methods
+
+        public void DeveloperEmail()
+        {
+            DateTime now = DateTime.Now;
+            EmailComposeTask emailcomposer = new EmailComposeTask();
+            emailcomposer.To = "gbalazs6@gmail.com";
+            emailcomposer.Subject = "HappenedHere Feedback " + now.ToLocalTime().ToString();
+            emailcomposer.Show();
+        }
+
+        # endregion
     }
 }

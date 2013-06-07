@@ -6,15 +6,15 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:datastore="clr-namespace:HappanedHere.DataStore"
+    xmlns:data="clr-namespace:HappanedHere.Data"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
     x:Class="HappanedHere.Views.SettingsPage"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
-    SupportedOrientations="PortraitOrLandscape"  Orientation="Landscape"
+    SupportedOrientations="PortraitOrLandscape"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
     <phone:PhoneApplicationPage.Resources>
-        <datastore:AppSettings x:Key="AppSettings"/>
+        <data:AppSettings x:Key="AppSettings"/>
     </phone:PhoneApplicationPage.Resources>
 
     <phone:PhoneApplicationPage.FontFamily>
@@ -74,10 +74,12 @@
                                Margin="10,20,0,0" TextWrapping="Wrap" 
                                Text="{Binding Path=AppResources.Contact, Source={StaticResource LocalizedStrings}}" 
                                VerticalAlignment="Top"/>
-                    <TextBlock x:Name="Contact" Grid.Row="3" HorizontalAlignment="Left" 
-                               Margin="221,20,0,0" TextWrapping="Wrap" 
-                               Text="gbalazs6@gmail.com" 
-                               VerticalAlignment="Top"/>
+                    <HyperlinkButton 
+                        x:Name="DeveloperEmail"
+                        Content="gbalazs6@gmail.com" 
+                        HorizontalAlignment="Left" 
+                        Margin="209,17,0,-1" Grid.Row="3" 
+                        VerticalAlignment="Top"/>
                 </Grid>
             </controls:PivotItem>
         </controls:Pivot>

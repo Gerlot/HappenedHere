@@ -37,6 +37,8 @@ namespace HappanedHere.Views
             InitializeComponent();
         }
 
+        # region Properties
+
         ArPageViewModel viewModel
         {
             get
@@ -44,6 +46,8 @@ namespace HappanedHere.Views
                 return this.DataContext as ArPageViewModel;
             }
         }
+
+        # endregion
 
         public class ArticleToSearch
         {
@@ -134,6 +138,13 @@ namespace HappanedHere.Views
         {
             base.OnOrientationChanged(e);
             ARDisplay.HandleOrientationChange(e);            
+        }
+
+        private void Grid_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Grid grid = sender as Grid;
+            ArticleItem article = grid.DataContext as ArticleItem;            
+            viewModel.ReadArticle(article.Url, article.Title);
         }
 
     }
