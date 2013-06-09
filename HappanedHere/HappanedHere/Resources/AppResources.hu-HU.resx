@@ -162,7 +162,7 @@
     <comment>Title for EarlierPage History pivot item</comment>
   </data>
   <data name="HistoryTileDescription" xml:space="preserve">
-    <value>Történelem, ott ahol megtörtént</value>
+    <value>Történelem ott, ahol megtörtént</value>
     <comment>History tile secription on MainPage</comment>
   </data>
   <data name="HistoryTileTitle" xml:space="preserve">
@@ -189,6 +189,14 @@
     <value>Hírek</value>
     <comment>News tile title on MainPage</comment>
   </data>
+  <data name="NoNetworkDescription" xml:space="preserve">
+    <value>A kiterjesztett valóság képernyő nem működik internet nélkül.</value>
+    <comment>Description for messagebox whenno network connection available.</comment>
+  </data>
+  <data name="NoNetworkTitle" xml:space="preserve">
+    <value>A hálózati kapcsolat nem elérhető</value>
+    <comment>Title for messagebox whenno network connection available.</comment>
+  </data>
   <data name="NoSavedArticles" xml:space="preserve">
     <value>Nincs még itt semmi. Ments el olyan cikkeket, amiket később el akarsz olvasni.</value>
     <comment>Placeholder text for EarlierPage in case of no saved articles to display</comment>
@@ -206,7 +214,7 @@
     <comment>Pin to main screen context menu item</comment>
   </data>
   <data name="Rate" xml:space="preserve">
-    <value>Értékelés+véleményezés</value>
+    <value>értékelés+véleményezés</value>
     <comment>Rate button for AppBar on MainPage</comment>
   </data>
   <data name="RefreshArticles" xml:space="preserve">
@@ -257,7 +265,7 @@
     <comment>The title of the application, appearing in the MainPage.</comment>
   </data>
   <data name="ToggleHeading" xml:space="preserve">
-    <value>Nézőpont mutatása</value>
+    <value>Nézőpontváltás</value>
     <comment>Toggle heading button for AppBar on ArPage</comment>
   </data>
   <data name="UseLocation" xml:space="preserve">

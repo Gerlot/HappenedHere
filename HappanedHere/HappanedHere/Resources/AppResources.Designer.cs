@@ -223,6 +223,24 @@ namespace HappanedHere.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Augmented Reallity View can&apos;t work without internet..
+        /// </summary>
+        public static string NoNetworkDescription {
+            get {
+                return ResourceManager.GetString("NoNetworkDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No network connection.
+        /// </summary>
+        public static string NoNetworkTitle {
+            get {
+                return ResourceManager.GetString("NoNetworkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to It&apos;s lonely here. Save some articles you want to read later..
         /// </summary>
         public static string NoSavedArticles {
@@ -376,7 +394,7 @@ namespace HappanedHere.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Toggle heading.
+        ///   Looks up a localized string similar to Toggle Heading.
         /// </summary>
         public static string ToggleHeading {
             get {

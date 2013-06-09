@@ -117,7 +117,7 @@ namespace HappanedHere.ViewModels
             }
             else
             {
-                MessageBox.Show("The Augmented Reallity View can't work without internet.", "No network connection", MessageBoxButton.OK);
+                MessageBox.Show(AppResources.NoNetworkDescription, AppResources.NoNetworkTitle, MessageBoxButton.OK);
             }
             
         }

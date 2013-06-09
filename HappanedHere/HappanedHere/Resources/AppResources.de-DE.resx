@@ -117,8 +117,167 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Karte</value>
+    <comment>About title for about</comment>
+  </data>
+  <data name="AllPivotItemTitle" xml:space="preserve">
+    <value>alle Artikel</value>
+    <comment>Title for EarlierPage All articles pivot item</comment>
+  </data>
+  <data name="AllTileDescription" xml:space="preserve">
+    <value>Artikel aus allen Kategorien</value>
+    <comment>All tile secription on MainPage</comment>
+  </data>
+  <data name="AllTileTitle" xml:space="preserve">
+    <value>Alle</value>
+    <comment>All tile title on MainPage</comment>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Ausgebreitete Wirklichkeit basierter Artikelleser für Handys mit Windows Phone 7 und 8. Zur Suche nach Nachrichten, historischen- und Sportereignissen,  die in deiner Nähe passierten. Das erscheint auf dem lebendigen Bild der Kamera. </value>
+    <comment>App description for about</comment>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>HierPassiert</value>
+    <comment>App title for about</comment>
+  </data>
+  <data name="ArticleSaved" xml:space="preserve">
+    <value>Artikel abgespeichert für späteres Lesen.</value>
+    <comment>Article Saved message for ReadArticlePage</comment>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Kontakt mit dem Entwickler:</value>
+    <comment>Contact label for about</comment>
+  </data>
+  <data name="EarlierTileDesciption" xml:space="preserve">
+    <value>Abgespeicherte Nachrichten für späteres Lesen</value>
+    <comment>Earlier tile secription on MainPage</comment>
+  </data>
+  <data name="EarlierTileTitle" xml:space="preserve">
+    <value>Frühere</value>
+    <comment>Earlier tile title on MainPage</comment>
+  </data>
+  <data name="HistoryPivotItemTitle" xml:space="preserve">
+    <value>Geschichte</value>
+    <comment>Title for EarlierPage History pivot item</comment>
+  </data>
+  <data name="HistoryTileDescription" xml:space="preserve">
+    <value>Geschichte dort, wo sie passierte</value>
+    <comment>History tile secription on MainPage</comment>
+  </data>
+  <data name="HistoryTileTitle" xml:space="preserve">
+    <value>Geschichte</value>
+    <comment>History tile title on MainPage</comment>
+  </data>
+  <data name="LetFindLocationDescription" xml:space="preserve">
+    <value>Hier Passiert braucht deine momentane Position, um die zu den nahen Orten angebundenen Artikel sichtbarzumachen. Bitte, erlaube die Ortsbestimmung für das Programm. </value>
+    <comment>Description for messagebox when use of location services turned off.</comment>
+  </data>
+  <data name="LetFindLocationTitle" xml:space="preserve">
+    <value>Erlaubst du den Gebrauch deiner momentanen Position?</value>
+    <comment>Title for messagebox when use of location services turned off.</comment>
+  </data>
+  <data name="NewsPivotItemTitle" xml:space="preserve">
+    <value>Nachrichten</value>
+    <comment>Title for EarlierPage News pivot item</comment>
+  </data>
+  <data name="NewsTileDesciption" xml:space="preserve">
+    <value>Nachrichten am Ort ihrer Ereignisse</value>
+    <comment>News tile secription on MainPage</comment>
+  </data>
+  <data name="NewsTileTitle" xml:space="preserve">
+    <value>Nachrichten</value>
+    <comment>News tile title on MainPage</comment>
+  </data>
+  <data name="NoNetworkDescription" xml:space="preserve">
+    <value>Der Bildschirm zur ausgebreiteten Wirklichkeit funktioniert ohne Internet nicht.</value>
+    <comment>Description for messagebox whenno network connection available.</comment>
+  </data>
+  <data name="NoNetworkTitle" xml:space="preserve">
+    <value>Netzwerk nicht erreichbar</value>
+    <comment>Title for messagebox whenno network connection available.</comment>
+  </data>
+  <data name="NoSavedArticles" xml:space="preserve">
+    <value>Nichts gibt' s hier noch. Speichere Artikel ab, die du später lesen willst. </value>
+    <comment>Placeholder text for EarlierPage in case of no saved articles to display</comment>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Aus</value>
+    <comment>Off state indicator for ToggleSwitch</comment>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>Ein</value>
+    <comment>On state indicator for ToggleSwitch</comment>
+  </data>
+  <data name="PinToStart" xml:space="preserve">
+    <value>Alignement an den Anfangsbildschirm</value>
+    <comment>Pin to main screen context menu item</comment>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Bewertung+Begutachtung</value>
+    <comment>Rate button for AppBar on MainPage</comment>
+  </data>
+  <data name="RefreshArticles" xml:space="preserve">
+    <value>Nachfüllung der Artikel</value>
+    <comment>Refresh articles button for AppBar on ArPage</comment>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Speichern des Artikels</value>
+    <comment>Save  button for AppBar on ReadArticlePage</comment>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Suchen</value>
+  </data>
+  <data name="SendEmail" xml:space="preserve">
+    <value>per E Mail senden</value>
+    <comment>Send via email  button for AppBar on ReadArticlePage</comment>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Einstellungen</value>
+    <comment>Settings button for AppBar on MainPage</comment>
+  </data>
+  <data name="ShareViaEmailBody" xml:space="preserve">
+    <value>Hi, dieser Artikel kann dir interessant sein, den ich las:</value>
+    <comment>Body for article sharing via email</comment>
+  </data>
+  <data name="ShareViaEmailSubject" xml:space="preserve">
+    <value>Ich möchte mit dir einen Artikel teilen, den ich in Hier Passiert Windows Phone App las</value>
+    <comment>Subject for article sharing via email</comment>
+  </data>
+  <data name="ShowMap" xml:space="preserve">
+    <value>Zeigen der Landkarte</value>
+    <comment>Show map button for AppBar on ArPage</comment>
+  </data>
+  <data name="SportsPivotItemTitle" xml:space="preserve">
+    <value>Sport</value>
+    <comment>Title for EarlierPage Sports pivot item</comment>
+  </data>
+  <data name="SportsTileDesciption" xml:space="preserve">
+    <value>Sportereignisse, die in der Nähe passierten</value>
+    <comment>Sports tile secription on MainPage</comment>
+  </data>
+  <data name="SportsTileTitle" xml:space="preserve">
+    <value>Sport</value>
+    <comment>Sports tile title on MainPage</comment>
+  </data>
   <data name="Title" xml:space="preserve">
-    <value>HappenedHere</value>
+    <value>HIER PASSIERT</value>
     <comment>The title of the application, appearing in the MainPage.</comment>
+  </data>
+  <data name="ToggleHeading" xml:space="preserve">
+    <value>Perspektivenwechsel</value>
+    <comment>Toggle heading button for AppBar on ArPage</comment>
+  </data>
+  <data name="UseLocation" xml:space="preserve">
+    <value>Gebrauch der Ortsbestimmung</value>
+    <comment>Use locatation label for settings</comment>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version:</value>
+    <comment>Version for about</comment>
+  </data>
+  <data name="ViewInExplorer" xml:space="preserve">
+    <value>Ansicht in Explorer</value>
+    <comment>View in explorer button for AppBar on ReadArticlePage</comment>
   </data>
 </root>
