@@ -141,6 +141,10 @@
     <value>HappenedHere</value>
     <comment>App title for about</comment>
   </data>
+  <data name="ArticleSaved" xml:space="preserve">
+    <value>A cikk elmentve későbbi olvasásra.</value>
+    <comment>Article Saved message for ReadArticlePage</comment>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Kapcsolat a fejlesztővel: </value>
     <comment>Contact label for about</comment>
@@ -154,7 +158,7 @@
     <comment>Earlier tile title on MainPage</comment>
   </data>
   <data name="HistoryPivotItemTitle" xml:space="preserve">
-    <value>törtnelem</value>
+    <value>történelem</value>
     <comment>Title for EarlierPage History pivot item</comment>
   </data>
   <data name="HistoryTileDescription" xml:space="preserve">

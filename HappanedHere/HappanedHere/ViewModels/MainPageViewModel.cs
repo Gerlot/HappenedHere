@@ -65,12 +65,12 @@ namespace HappanedHere.ViewModels
             {
                 StandardTileData tileData = new StandardTileData
                 {
-                    Title = "Secondary Tile",
+                    Title = "HH Saved Articles",
                     BackgroundImage = new Uri("/Assets/MainPage/earlier.png", UriKind.Relative),
                     Count = EarlierPageViewModel.savedArticleNumber,
-                    BackTitle = "Secondary Tile",
+                    BackTitle = "HH Saved Articles",
                     BackBackgroundImage = new Uri("", UriKind.Relative),
-                    BackContent = "WPG Add Remove Tile Sample"
+                    BackContent = "Index.hu - Orbán: Bekövetkezett, amitől tartottunk"
                 };
 
                 string tileUri = string.Concat("/Views/EarlierPage.xaml?", EarlierTileUriSource);
@@ -85,12 +85,12 @@ namespace HappanedHere.ViewModels
             {
                 StandardTileData tileData = new StandardTileData
                 {
-                    Title = "Secondary Tile",
+                    Title = "HH Saved Articles",
                     BackgroundImage = new Uri("/Assets/MainPage/earlier.png", UriKind.Relative),
                     Count = EarlierPageViewModel.savedArticleNumber,
-                    BackTitle = "Secondary Tile",
+                    BackTitle = "HH Saved Articles",
                     BackBackgroundImage = new Uri("", UriKind.Relative),
-                    BackContent = "WPG Add Remove Tile Sample"
+                    BackContent = "Index.hu - Orbán: Bekövetkezett, amitől tartottunk"
                 };
                 tile.Update(tileData);
             }

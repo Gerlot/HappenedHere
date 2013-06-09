@@ -30,9 +30,13 @@ namespace HappanedHere.Views
 
         # endregion
 
+        # region Event Handlers
+
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             viewModel.PinToStart();
         }
+
+        # endregion
     }
 }

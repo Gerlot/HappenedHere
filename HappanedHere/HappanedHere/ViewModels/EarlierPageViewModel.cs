@@ -213,7 +213,7 @@ namespace HappanedHere.ViewModels
                 }
             }
             ReadArticlePageViewModel.showSaved = content;
-            navigationService.UriFor<ReadArticlePageViewModel>().Navigate();
+            //navigationService.UriFor<ReadArticlePageViewModel>().Navigate();
 
             MessageBox.Show(content);
         }

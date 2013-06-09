@@ -83,6 +83,15 @@
                 </Grid>
             </controls:PivotItem>
         </controls:Pivot>
+        <Border x:Name="border" BorderBrush="{StaticResource PhoneForegroundBrush}" BorderThickness="15,15,15,15" Background="{StaticResource PhoneAccentBrush}" RenderTransformOrigin="0.5,0.5" Opacity=".5" CacheMode="BitmapCache" Margin="-96,-150,-24,0" Height="300" VerticalAlignment="Top">
+            <Border.RenderTransform>
+                <CompositeTransform x:Name="transform"/>
+            </Border.RenderTransform>
+            <toolkit:GestureService.GestureListener>
+                <toolkit:GestureListener
+                    PinchStarted="OnPinchStarted" PinchDelta="OnPinchDelta"/>
+            </toolkit:GestureService.GestureListener>
+        </Border>
     </Grid>
 
 </phone:PhoneApplicationPage>

@@ -17,12 +17,14 @@ namespace HappanedHere
 {
     using System.Windows;
     using System.Threading;
+    using HappanedHere.Data;
 
     public partial class App : Application
     {
         public App()
         {
             InitializeComponent();
+            //HappenedHereRepository.Initialize();
         }
     }
 }

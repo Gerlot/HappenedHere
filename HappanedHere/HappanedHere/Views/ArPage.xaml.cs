@@ -27,11 +27,6 @@ namespace HappanedHere.Views
 {
     public partial class ArPage : PhoneApplicationPage
     {
-        public enum ArticleType { News, History, Sports };
-        public static Stack<ArticleToSearch> articles;
-
-        private Accelerometer accelerometer;
-
         public ArPage()
         {
             InitializeComponent();
@@ -49,62 +44,7 @@ namespace HappanedHere.Views
 
         # endregion
 
-        public class ArticleToSearch
-        {
-            public GeocodeLocation location;
-            public string address;
-
-            public ArticleToSearch(GeocodeLocation l, string a)
-            {
-                location = l;
-                address = a;
-            }
-        }
-
-        private void orientationHelper_OrientationChanged(object sender, DeviceOrientationChangedEventArgs e)
-        {
-            if (e.CurrentOrientation.Equals(DeviceOrientation.ScreenSideUp))
-            {
-                MessageBox.Show("Flat");
-            }
-            //e.CurrentOrientation
-            //DeviceOrientation.ScreenSideUp
-        }
-
-        private void accelerometerHelper_ReadingChanged(object sender, AccelerometerHelperReadingEventArgs e)
-        {
-            
-        }      
-                
-
-        public void AddArticle(ArticleType type, GeoCoordinate location, string title, Uri url)
-        {
-            Uri icon = null;
-            switch (type)
-            {
-                case ArticleType.News:
-                    icon = new Uri("/Assets/ArPage/news_icon.png", UriKind.Relative);
-                    break;
-                case ArticleType.History:
-                    icon = new Uri("/Assets/ArPage/history_icon.png", UriKind.Relative);
-                    break;
-                case ArticleType.Sports:
-                    icon = new Uri("/Assets/ArPage/sports_icon.png", UriKind.Relative);
-                    break;
-                default:
-                    break;
-            }
-            ArticleItem item = new ArticleItem()
-            {
-                GeoLocation = location,
-                Title = title,
-                Content = "Article",
-                DisplayUrl = url.ToString(),
-                Icon = icon,
-            };
-
-            ARDisplay.ARItems.Add(item);
-        }
+        # region Event Handlers
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
@@ -125,12 +65,6 @@ namespace HappanedHere.Views
             ARDisplay.StartServices();
             viewModel.StartServices();
 
-            //accelerometer = new Accelerometer();
-            //accelerometer.CurrentValueChanged += accelerometer_CurrentValueChanged;
-            //accelerometer.Start();
-            AccelerometerHelper.Instance.ReadingChanged += new EventHandler<AccelerometerHelperReadingEventArgs>(accelerometerHelper_ReadingChanged);
-            DeviceOrientationHelper.Instance.OrientationChanged += new EventHandler<DeviceOrientationChangedEventArgs>(orientationHelper_OrientationChanged);
-
             base.OnNavigatedTo(e);
         }
 
@@ -146,6 +80,8 @@ namespace HappanedHere.Views
             ArticleItem article = grid.DataContext as ArticleItem;            
             viewModel.ReadArticle(article.Url, article.Title);
         }
+
+        # endregion
 
     }
 }

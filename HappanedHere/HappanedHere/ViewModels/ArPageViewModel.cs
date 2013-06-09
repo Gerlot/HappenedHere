@@ -25,6 +25,7 @@ namespace HappanedHere.ViewModels
     public class ArPageViewModel : Screen
     {
         readonly INavigationService navigationService;
+        public HappenedHereRepository repository;
         public static string ArticleUrl;
         public static string ArticleTitle;
 
@@ -43,6 +44,7 @@ namespace HappanedHere.ViewModels
         public ArPageViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
+            repository = new HappenedHereRepository();
             geowatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
             nearbyCoordinates = new Stack<GeoCoordinate>();
             nearbyStreets = new List<string>();
@@ -415,6 +417,13 @@ namespace HappanedHere.ViewModels
 
             // Show Progress Bar
             IsProgressBarIndeterminate = true;
+
+            // Add Database Articles
+            /*var databaseArticles = repository.GetDatabaseArticles();
+            if (databaseArticles != null && databaseArticles.Count != 0)
+            {
+                
+            }*/
 
             // Pick random nearby locations
             for (int i = 0; i < nearbynumber; i++)

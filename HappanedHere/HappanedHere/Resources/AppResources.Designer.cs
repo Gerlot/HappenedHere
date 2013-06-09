@@ -115,6 +115,15 @@ namespace HappanedHere.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Artile saved for future reading..
+        /// </summary>
+        public static string ArticleSaved {
+            get {
+                return ResourceManager.GetString("ArticleSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact the developer: .
         /// </summary>
         public static string Contact {

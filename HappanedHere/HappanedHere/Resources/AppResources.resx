@@ -141,6 +141,10 @@
     <value>Happened Here</value>
     <comment>App title for about</comment>
   </data>
+  <data name="ArticleSaved" xml:space="preserve">
+    <value>Artile saved for future reading.</value>
+    <comment>Article Saved message for ReadArticlePage</comment>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact the developer: </value>
     <comment>Contact label for about</comment>

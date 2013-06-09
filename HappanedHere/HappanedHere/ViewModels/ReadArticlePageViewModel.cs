@@ -29,15 +29,12 @@ namespace HappanedHere.ViewModels
             this.navigationService = navigationService;
             isolatedStorage = IsolatedStorageFile.GetUserStoreForApplication();
 
-            if (showSaved != null)
-            {
-                string urlToShow = HttpUtility.UrlEncode(ArPageViewModel.ArticleUrl);
-                initialUrl = mobilizerServiceUrl + urlToShow;
-                browsingHistory = new Stack<string>();
-                browsingHistory.Push(initialUrl);
-                articleBrowserUrl = initialUrl;
-                IsProgressBarIndeterminate = true;
-            }            
+            string urlToShow = HttpUtility.UrlEncode(ArPageViewModel.ArticleUrl);
+            initialUrl = mobilizerServiceUrl + urlToShow;
+            browsingHistory = new Stack<string>();
+            browsingHistory.Push(initialUrl);
+            articleBrowserUrl = initialUrl;
+            IsProgressBarIndeterminate = true;
 
             viewInExplorerText = AppResources.ViewInExplorer;
             viewInExplorerIcon = new Uri("/Assets/ReadArticlePage/AppBar/explorer.png", UriKind.Relative);
@@ -199,7 +196,7 @@ namespace HappanedHere.ViewModels
             catch (Exception)
             {
             }
-            
+
         }
 
         # endregion

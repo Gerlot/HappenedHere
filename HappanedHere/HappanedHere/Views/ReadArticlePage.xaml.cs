@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using HappanedHere.ViewModels;
+using HappanedHere.Resources;
 
 namespace HappanedHere.Views
 {
@@ -16,10 +17,10 @@ namespace HappanedHere.Views
         public ReadArticlePage()
         {
             InitializeComponent();
-            if (ReadArticlePageViewModel.showSaved != null)
+            /*if (ReadArticlePageViewModel.showSaved != null)
             {
                 ArticleBrowser.NavigateToString(ReadArticlePageViewModel.showSaved);
-            }
+            }*/
         }
 
         # region Properties
@@ -59,6 +60,7 @@ namespace HappanedHere.Views
 
         private void Save_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(AppResources.ArticleSaved);
             viewModel.Save(ArticleBrowser.SaveToString());
         }
 
